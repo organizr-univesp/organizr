@@ -12,8 +12,8 @@ Web app made to help people organize themselves by connecting multiple popular (
 | ------------- | ------------------ |
 | Markup        | HTML5              |
 | Stylesheets   | SCSS               |
-| Programming   | JavaScript         |
-| Web Framework | Express.js         |
+| Programming   | TypeScript         |
+| Web Framework | NestJS             |
 | Runtime       | Node.js            |
 | Database      | PostgreSQL         |
 | Hosting       | Heroku             |
