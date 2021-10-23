@@ -9,5 +9,17 @@
         "editor.formatOnSave": true,
         "editor.formatOnSaveMode": "file",
         "editor.formatOnType": true
-    }
+    },
+    "sqltools.connections": [
+        {
+            "name": "Container database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
 }
