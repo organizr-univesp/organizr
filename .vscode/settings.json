@@ -20,6 +20,26 @@
             "database": "postgres",
             "username": "postgres",
             "password": "postgres"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5433,
+            "driver": "PostgreSQL",
+            "name": "Default database (Local)",
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgroot2"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5433,
+            "driver": "PostgreSQL",
+            "name": "Organizr (Local)",
+            "database": "organizr",
+            "username": "postgres",
+            "password": "postgroot2"
         }
     ]
 }
