@@ -1,10 +1,10 @@
 -- Dropping the tables
-drop table items_integrations;
-drop table integrations;
-drop table integration_categories;
-drop table items;
-drop table projects;
-drop table users;
+drop table if exists items_integrations;
+drop table if exists integrations;
+drop table if exists integration_categories;
+drop table if exists items;
+drop table if exists projects;
+drop table if exists users;
 -- Creating the tables
 create table users (
     id uuid not null primary key,
