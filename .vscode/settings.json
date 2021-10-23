@@ -1,6 +1,7 @@
 {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.renderWhitespace": "all",
+    "files.eol": "\r\n",
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -8,5 +9,17 @@
         "editor.formatOnSave": true,
         "editor.formatOnSaveMode": "file",
         "editor.formatOnType": true
-    }
+    },
+    "sqltools.connections": [
+        {
+            "name": "Container database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
 }
