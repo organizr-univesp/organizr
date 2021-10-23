@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "vivaxy.vscode-conventional-commits",
+        "dbaeumer.vscode-eslint",
+        "tht13.html-preview-vscode",
+        "mrmlnc.vscode-scss",
+        "redhat.vscode-yaml",
+        "medo64.render-crlf"
+    ]
+}
