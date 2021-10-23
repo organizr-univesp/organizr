@@ -1,6 +1,7 @@
 {
     "editor.tabSize": 2,
     "editor.renderWhitespace": "all",
+    "files.eol": "\r\n",
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",

@@ -1,0 +1,2 @@
+# Configure line endings to be CRLF (Windows mode).
+* text=auto eol=crlf
