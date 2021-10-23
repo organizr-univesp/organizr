@@ -7,6 +7,11 @@
         "tht13.html-preview-vscode",
         "mrmlnc.vscode-scss",
         "redhat.vscode-yaml",
-        "medo64.render-crlf"
+        "medo64.render-crlf",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+        "codezombiech.gitignore",
+        "ms-vscode.vscode-typescript-next"
     ]
 }
