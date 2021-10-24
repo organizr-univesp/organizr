@@ -16,6 +16,15 @@ export class DatabaseModule extends SequelizeModule {
             host: process.env.DB_HOST || 'localhost',
             port: (process.env.DB_PORT && Number(process.env.DB_PORT)) || 5432,
             dialect: 'postgres',
+            dialectOptions: {
+                ssl:
+                    process.env.NODE_ENV !== 'development'
+                        ? {
+                              require: true,
+                              rejectUnauthorized: false,
+                          }
+                        : null,
+            },
             quoteIdentifiers: false,
             define: {
                 timestamps: false,
