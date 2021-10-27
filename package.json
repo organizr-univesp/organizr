@@ -34,6 +34,7 @@
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
         "rxjs": "^7.4.0",
+        "sass": "^1.43.4",
         "sequelize": "^6.7.0",
         "sequelize-typescript": "^2.1.1"
     },
