@@ -17,10 +17,13 @@ export class DatabaseModule extends SequelizeModule {
             port: (process.env.DB_PORT && Number(process.env.DB_PORT)) || 5432,
             dialect: 'postgres',
             dialectOptions: {
-                ssl: {
-                    require: true,
-                    rejectUnauthorized: false,
-                },
+                ssl:
+                    process.env.NODE_ENV !== 'development'
+                        ? {
+                              require: true,
+                              rejectUnauthorized: false,
+                          }
+                        : null,
             },
             quoteIdentifiers: false,
             define: {
