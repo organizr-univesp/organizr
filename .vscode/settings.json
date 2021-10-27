@@ -10,6 +10,9 @@
         "editor.formatOnSaveMode": "file",
         "editor.formatOnType": true
     },
+    "[handlebars]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
     "sqltools.connections": [
         {
             "name": "Container database",
@@ -40,6 +43,22 @@
             "database": "organizr",
             "username": "postgres",
             "password": "postgroot2"
+        },
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": false,
+                    "requestCert": false
+                }
+            },
+            "previewLimit": 50,
+            "server": "ec2-18-234-15-247.compute-1.amazonaws.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Organizr (Production)",
+            "username": "legvkhqcfkgglu",
+            "password": "a1d9733966442d3fac8bc4af3eb2faff6c0753925d795eed9dbc0655f7d13bd4",
+            "database": "d2rpri5nsql438"
         }
     ]
 }

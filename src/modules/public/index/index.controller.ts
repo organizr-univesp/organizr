@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class IndexController {
     @Get()
-    get(): string {
-        return '🏠';
+    @Render('public/index/index')
+    get(): void {
+        // Render-only
     }
 }
