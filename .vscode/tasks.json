@@ -11,6 +11,20 @@
             "runOptions": {
                 "instanceLimit": 1
             }
+        },
+        {
+            "type": "shell",
+            "command": "sass",
+            "args": [
+                "src/",
+                "--watch"
+            ],
+            "group": "none",
+            "label": "sass: build & watch",
+            "detail": "sass src/ --watch x",
+            "runOptions": {
+                "instanceLimit": 1
+            }
         }
     ]
 }
