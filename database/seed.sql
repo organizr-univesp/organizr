@@ -56,14 +56,14 @@ insert into users (
 values (
         user_id,
         'test+user@organizr.com',
-        sha512('test+user'),
+        encode(sha512('test+user'), 'hex'),
         'Organizr User',
         0
     ),
     (
         admin_id,
         'test+administrator@organizr.com',
-        sha512('test+administrator'),
+        encode(sha512('test+administrator'), 'hex'),
         'Organizr Administrator',
         0
     );
