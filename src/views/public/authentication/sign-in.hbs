@@ -1,0 +1,58 @@
+<html lang='en'>
+
+<head>
+    {{> public/head}}
+    <title>App</title>
+</head>
+
+<body>
+    {{> public/header hide-sign-in=true}}
+
+    <div class="container py-5 my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <form action="/authentication/sign-in" method="post">
+                    <div class="mb-3">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" id="email"
+                            class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">Senha</label>
+                        <input type="password" name="password" id="password"
+                            class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
+                        <div class="form-text">
+                            <a href="/forgot-password" class="link-primary">
+                                Esqueci a senha
+                            </a>
+                        </div>
+                        {{#if wrongCredentials}}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            <div class="row align-items-center gx-2">
+                                <div class="col-auto">
+                                    <i class="bi-exclamation-circle mr-2"></i>
+                                </div>
+                                <div class="col-auto">
+                                    <span>Credenciais inválidas</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="row gx-3 justify-content-end align-items-center mt-3">
+                        <div class="col-auto">
+                            <a href="/sign-up" class="link-primary">Criar Conta</a>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{> public/footer}}
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 import { DomainModel } from '@/modules/business/domain/base/domain.model';
-import { UserRole } from '@/modules/business/domain/user-role';
+import { UserRole } from '@/modules/business/domain/user-role.entity';
 import { Column, PrimaryKey, Table } from 'sequelize-typescript';
 
 @Table

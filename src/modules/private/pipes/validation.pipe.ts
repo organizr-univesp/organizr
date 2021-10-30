@@ -1,4 +1,4 @@
-import { ValidationErrorException } from '@/modules/private/exceptions/validation.error.exception';
+import { ValidationErrorException } from '@/modules/business/exceptions/validation.error.exception';
 import {
     ArgumentMetadata,
     Injectable,

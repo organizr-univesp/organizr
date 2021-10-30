@@ -1,4 +1,4 @@
-import { Integration } from '@/modules/business/domain/integration';
+import { Integration } from '@/modules/business/domain/integration.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

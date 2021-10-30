@@ -1,6 +1,6 @@
 import { DomainModel } from '@/modules/business/domain/base/domain.model';
-import { Integration } from '@/modules/business/domain/integration';
-import { Item } from '@/modules/business/domain/item';
+import { Integration } from '@/modules/business/domain/integration.entity';
+import { Item } from '@/modules/business/domain/item.entity';
 
 import {
     BelongsTo,

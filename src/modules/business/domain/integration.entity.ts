@@ -1,5 +1,5 @@
 import { DomainModel } from '@/modules/business/domain/base/domain.model';
-import { IntegrationCategory } from '@/modules/business/domain/integration-category';
+import { IntegrationCategory } from '@/modules/business/domain/integration-category.entity';
 import {
     BelongsTo,
     Column,
