@@ -1,3 +1,4 @@
+import { AuthenticationService } from '@/modules/business/services/authentication.service';
 import { IntegrationCategoryService } from '@/modules/business/services/integration-category.service';
 import { IntegrationService } from '@/modules/business/services/integration.service';
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
@@ -14,6 +15,7 @@ import { Module } from '@nestjs/common';
         ItemIntegrationService,
         IntegrationService,
         IntegrationCategoryService,
+        AuthenticationService,
     ],
     exports: [
         UserService,
@@ -22,6 +24,7 @@ import { Module } from '@nestjs/common';
         ItemIntegrationService,
         IntegrationService,
         IntegrationCategoryService,
+        AuthenticationService,
     ],
 })
 export class BusinessModule {}

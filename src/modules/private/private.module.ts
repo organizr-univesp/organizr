@@ -1,26 +1,26 @@
 import { BusinessModule } from '@/modules/business/business.module';
 import { DatabaseModule } from '@/modules/database/database.module';
-import { InfrastructureModule } from '@/modules/infrastructure/infrastructure.module';
 import { AppController } from '@/modules/private/controllers/app.controller';
-import { BusinessExceptionFilter } from '@/modules/private/filters/business-exception.filter';
 import { ValidationPipe } from '@/modules/private/pipes/validation.pipe';
-import { Module } from '@nestjs/common';
+import { LocalSerializer } from '@/modules/private/serializer/local.serializer';
+import { LocalStrategy } from '@/modules/private/strategies/local.strategy';
+import { Logger, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { APP_PIPE } from '@nestjs/core';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
     imports: [
         ConfigModule.forRoot(),
         DatabaseModule.forRoot(),
         BusinessModule,
-        InfrastructureModule,
+        PassportModule,
     ],
     controllers: [AppController],
     providers: [
-        {
-            provide: APP_FILTER,
-            useClass: BusinessExceptionFilter,
-        },
+        Logger,
+        LocalStrategy,
+        LocalSerializer,
         {
             provide: APP_PIPE,
             useClass: ValidationPipe,

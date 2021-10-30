@@ -1,5 +1,5 @@
 import { DomainModel } from '@/modules/business/domain/base/domain.model';
-import { Project } from '@/modules/business/domain/project';
+import { User } from '@/modules/business/domain/user.entity';
 import {
     BelongsTo,
     Column,
@@ -9,7 +9,7 @@ import {
 } from 'sequelize-typescript';
 
 @Table
-export class Item extends DomainModel {
+export class Project extends DomainModel {
     @PrimaryKey
     @Column
     id: string;
@@ -17,15 +17,18 @@ export class Item extends DomainModel {
     @Column
     name: string;
 
-    @ForeignKey(() => Project)
-    @Column({
-        field: 'project_id',
-    })
-    projectId: number;
-
-    @BelongsTo(() => Project)
-    project: Project;
+    @Column
+    color: string;
 
     @Column
     slug: string;
+
+    @ForeignKey(() => User)
+    @Column({
+        field: 'user_id',
+    })
+    userId: number;
+
+    @BelongsTo(() => User)
+    user: User;
 }

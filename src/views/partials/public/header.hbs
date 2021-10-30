@@ -5,13 +5,14 @@
             {{> shared/logo}}
         </a>
         <div class="row justify-content-end gx-3">
+            {{#unless hide-sign-in}}
             <div class="col-auto">
-                <a class="btn btn-outline-primary" aria-current="page" href="/sign-in">Entrar</a>
+                <a class="btn btn-outline-primary" aria-current="page" href="/authentication/sign-in">Entrar</a>
             </div>
+            {{/unless}}
             <div class="col-auto">
-                <a class="btn btn-primary" aria-current="page" href="/sign-up">Criar Conta</a>
+                <a class="btn btn-primary" aria-current="page" href="/authentication/sign-up">Criar Conta</a>
             </div>
         </div>
-    </div>
     </div>
 </nav>

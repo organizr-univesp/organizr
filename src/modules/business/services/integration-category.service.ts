@@ -1,4 +1,4 @@
-import { IntegrationCategory } from '@/modules/business/domain/integration-category';
+import { IntegrationCategory } from '@/modules/business/domain/integration-category.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { Item } from '@/modules/business/domain/item';
+import { Item } from '@/modules/business/domain/item.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

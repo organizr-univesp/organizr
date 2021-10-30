@@ -1,9 +1,9 @@
-import { Integration } from '@/modules/business/domain/integration';
-import { IntegrationCategory } from '@/modules/business/domain/integration-category';
-import { Item } from '@/modules/business/domain/item';
-import { ItemIntegration } from '@/modules/business/domain/item-integration';
-import { Project } from '@/modules/business/domain/project';
-import { User } from '@/modules/business/domain/user';
+import { Integration } from '@/modules/business/domain/integration.entity';
+import { IntegrationCategory } from '@/modules/business/domain/integration-category.entity';
+import { Item } from '@/modules/business/domain/item.entity';
+import { ItemIntegration } from '@/modules/business/domain/item-integration.entity';
+import { Project } from '@/modules/business/domain/project.entity';
+import { User } from '@/modules/business/domain/user.entity';
 import { DynamicModule } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 

@@ -1,4 +1,4 @@
-import { BusinessException } from '@/modules/private/exceptions/business.exception';
+import { BusinessException } from '@/modules/business/exceptions/business.exception';
 import { HttpStatus } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
