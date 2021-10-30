@@ -27,7 +27,7 @@ export class Project extends DomainModel {
     @Column({
         field: 'user_id',
     })
-    userId: number;
+    userId: string;
 
     @BelongsTo(() => User)
     user: User;

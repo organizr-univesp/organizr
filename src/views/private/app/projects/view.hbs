@@ -1,0 +1,104 @@
+<html lang='en'>
+
+<head>
+    {{> private/head}}
+    <title>Organizr</title>
+</head>
+
+<body>
+    {{> private/header page='projects'}}
+
+    <div class="container my-5">
+        <div class="row justify-content-between">
+            {{#with project}}
+            <div class="col-auto">
+                <h1 class="display-6">{{name}}</h1>
+            </div>
+            {{/with}}
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 order-md-1">
+                <div class="card p-3 h-100">
+                    <p class="text-muted">Detalhes do Projeto</p>
+                    <code>TODO 🚧</code>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Pendências ({{length pendingItems}})
+                        </h5>
+                        <div class="d-flex flex-column mt-3">
+                            {{#isEmpty pendingItems}}
+                            <small class="text-muted text-center">
+                                Nada pendente. 🎉
+                            </small>
+                            {{else}}
+                            {{#forEach pendingItems}}
+                            <form action="/app/items/finish" method="post" class="mb-0">
+                                <input type="hidden" name="id" value="{{id}}">
+                                <input type="hidden" name="finished" value="false">
+                                <label>
+                                    <input type="checkbox" data-item="" oninput="onItemChange(event)">
+                                    <span>{{name}}</span>
+                                </label>
+                            </form>
+                            {{/forEach}}
+                            {{/isEmpty}}
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Concluídos ({{length finishedItems}})
+                        </h5>
+                        <div class="d-flex flex-column mt-3">
+                            {{#isEmpty finishedItems}}
+                            <small class="text-muted text-center">
+                                Nada concluído até o momento. 💭
+                            </small>
+                            {{else}}
+                            {{#forEach finishedItems}}
+                            <form action="/app/items/finish" method="post" class="mb-0">
+                                <label>
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <input type="hidden" name="finished" value="false">
+                                    <input type="checkbox" id="item-{{id}}" data-item="" checked="checked"
+                                        oninput="onItemChange(event)">
+                                    <span>{{name}}</span>
+                                </label>
+                            </form>
+                            {{/forEach}}
+                            {{/isEmpty}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * @param {Event} event
+         */
+        function onItemChange(event) {
+            /** @type {HTMLInputElement} */
+            const target = event.target;
+            /** @type {boolean} */
+            const checked = target.checked;
+
+            document
+                .querySelectorAll('input[type="checkbox"][data-item]')
+                .forEach(x => x.setAttribute('disabled', true));
+
+            target.form.finished.value = checked;
+            target.form.submit();
+        }
+    </script>
+
+    {{> private/footer}}
+</body>
+
+</html>

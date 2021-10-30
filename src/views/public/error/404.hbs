@@ -6,7 +6,11 @@
 </head>
 
 <body>
+    {{#if authenticated}}
+    {{> private/header}}
+    {{else}}
     {{> public/header}}
+    {{/if}}
 
     <div class="container py-5 my-5">
         <div class="row">
