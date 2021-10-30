@@ -24,7 +24,8 @@
             "detail": "sass src/ --watch x",
             "runOptions": {
                 "instanceLimit": 1
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }
