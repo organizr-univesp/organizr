@@ -2,7 +2,9 @@
 
 <head>
     {{> private/head}}
-    <title>Organizr</title>
+    {{#with project}}
+    <title>Organizr - Projeto "{{name}}"</title>
+    {{/with}}
 </head>
 
 <body>
