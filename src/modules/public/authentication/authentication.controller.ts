@@ -37,6 +37,15 @@ export class AuthenticationController {
             response.redirect('/authentication/sign-in?wrong-credentials');
         }
     }
+    @Get('sign-up')
+    @Render('public/authentication/sign-up')
+    signUpGet(
+        @Query('wrong-credentials') wrongCredentials: boolean,
+    ): Record<string, unknown> {
+        return {
+            wrongCredentials: wrongCredentials !== undefined,
+        };
+    }
 
     @Post('sign-out')
     @UseGuards(CookieAuthenticationGuard)
