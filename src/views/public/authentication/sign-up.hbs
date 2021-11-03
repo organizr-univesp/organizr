@@ -4,40 +4,33 @@
     <title>Criar Conta</title>
 </head>
 <body class="body-grad my-font-family">
-    <!---{{>public/header hide-sign-up=true}}-->
    
     <main class="container d-flex justify-content-center" style="height: 90vh;">
-        <article class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
-            <div class="mb-3">
+        <article class="col-6 col-sm-3 d-flex flex-column align-items-center justify-content-center">
+            <div class="mb-5">
                 {{>shared/logo}}
             </div>
-            <h4 class="text-uppercase">Criar conta</h4>
-        </article>
-         <!--<div class="logo">
-            {{>shared/logo}}
-        </div>
-        <article class="create-account">
-            <h2>Criar conta</h2>
-            <form>
-                <div class="forms">
-                <input name="" class="form-control" placeholder="Nome" type="text">
+            <h5 class="mb-4 text-uppercase text-secondary">Criar conta</h5>
+            <hr class="w-100 mt-0 mb-4">
+            <form class="w-100">
+                <div class="form-group w-100 mt-2 mb-3">
+                    <input type="email" class="form-control w-100" id="" aria-describedby="emailHelp" placeholder="Nome">
                 </div>
-                <div class="forms">
-                    <input name="" class="form-control"placeholder="Email address" type="email">
+                <div class="form-group w-100 mb-3">
+                    <input type="email" class="form-control w-100" id="" aria-describedby="emailHelp" placeholder="Email">
                 </div>
-                <div class="forms">
-                    <input name="" class="form-control"placeholder="Senha" type="password">
+                <div class="form-group w-100 mb-3">
+                    <input type="password" class="form-control" id="" placeholder="Senha">
                 </div>
-                <div class="forms">
-                    <input name="" class="form-control"placeholder="Confirmar senha" type="password">
+                <div class="form-group w-100 mb-3">
+                    <input type="password" class="form-control" id="" placeholder="Confirmar Senha">
                 </div>
-                <div class="forms">
-                    <button type="submit" class="btn btn-primary btn-block">Criar conta</button>
+                <div class="form-group w-100 mb-2">
+                    <button type="submit" class="btn btn-primary w-100">Criar conta</button>
                 </div>
-                <p class="text-center">Já tem uma conta? <a href="">Log In</a> </p>  
+                <p class="text-center">Já tem uma conta? <a href="#">Entre</a></p>
             </form>
-            
-        </article>-->
+        </article>
     </main>
     {{>public/footer}}
 </body>
