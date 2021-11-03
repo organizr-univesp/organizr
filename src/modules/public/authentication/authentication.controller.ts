@@ -37,6 +37,7 @@ export class AuthenticationController {
             response.redirect('/authentication/sign-in?wrong-credentials');
         }
     }
+
     @Get('sign-up')
     @Render('public/authentication/sign-up')
     signUpGet(
