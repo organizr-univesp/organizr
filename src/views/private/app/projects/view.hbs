@@ -44,6 +44,10 @@
                                 <label>
                                     <input type="checkbox" data-item="" oninput="onItemChange(event)">
                                     <span>{{name}}</span>
+                                    <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
+                                        <span>Ver</span>
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
                                 </label>
                             </form>
                             {{/forEach}}
@@ -70,6 +74,10 @@
                                     <input type="checkbox" id="item-{{id}}" data-item="" checked="checked"
                                         oninput="onItemChange(event)">
                                     <span>{{name}}</span>
+                                    <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
+                                        <span>Ver</span>
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
                                 </label>
                             </form>
                             {{/forEach}}

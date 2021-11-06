@@ -38,6 +38,10 @@ export class ItemsController {
 
         await item.save();
 
-        response.redirect(`/app/projects/s/${item.project.slug}`);
+        const redirectUrl =
+            response.req.headers.referer ||
+            `/app/projects/s/${item.project.slug}`;
+
+        response.redirect(redirectUrl);
     }
 }

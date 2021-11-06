@@ -1,0 +1,101 @@
+<html lang='en'>
+
+<head>
+    {{> private/head}}
+    <title>Organizr - Projeto "{{project/name}}" - Item "{{item/name}}"</title>
+</head>
+
+<body>
+    {{> private/header page='projects'}}
+
+    <div class="container my-5">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <a class="display-6 text-decoration-none mb-2 d-inline-block"
+                    href="/app/projects/s/{{project/slug}}">{{project/name}}</a>
+                <h1 class="display-6">
+                    <i class="bi bi-arrow-return-right fs-3"></i>
+                    <span>{{item/name}}</span>
+                    {{#if item/finishedAt}}
+                    <span class="fs-3 text-success">
+                        <i class="bi bi-check2"></i>
+                    </span>
+                    {{/if}}
+                </h1>
+            </div>
+            <div class="col-12">
+                <hr>
+                <div class="row justify-content-between align-items-center gx-5">
+                    <div class="col-auto">
+                        <div class="d-inline-flex flex-column">
+                            <small class="text-muted">Status</small>
+                            {{#if item/finishedAt}}
+                            <span class="text-success">
+                                <span>Concluído</span>
+                                <i class="bi bi-check2"></i>
+                            </span>
+                            {{else}}
+                            <span>
+                                Em Progresso
+                            </span>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-inline-flex flex-column">
+                            <small class="text-muted">Projeto</small>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="d-inline-block p-1 rounded-3" style="background-color: {{project/color}}">
+                                </div>
+                                <a class="text-decoration-none"
+                                    href="/app/projects/s/{{project/slug}}">{{project/name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-inline-flex flex-column">
+                            <small class="text-muted">Integrações</small>
+                            {{#isEmpty itemIntegrations}}
+                            <span>Nenhuma</span>
+                            {{else}}
+                            <code>TODO 🚧</code>
+                            {{/isEmpty}}
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-inline-flex flex-column">
+                            <small class="text-muted">Ações</small>
+                            <div class="row gx-3">
+                                <form action="/app/items/finish" method="post" class="d-inline-block mb-0">
+                                    <input type="hidden" name="id" value="{{item/id}}">
+                                    <input type="hidden" name="finished"
+                                        value="{{#if item/finishedAt}}false{{else}}true{{/if}}">
+                                    <label>
+                                        <button type="submit"
+                                            class="btn btn-link text-decoration-none border-0 p-0 shadow-none">
+                                            {{#if item/finishedAt}}
+                                            <span>Reverter</span>
+                                            <i class="bi bi-arrow-counterclockwise"></i>
+                                            {{else}}
+                                            <span>Concluir</span>
+                                            <i class="bi bi-check2"></i>
+                                            {{/if}}
+                                        </button>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <hr>
+                <code>TODO 🚧</code>
+            </div>
+        </div>
+    </div>
+
+    {{> private/footer}}
+</body>
+
+</html>
