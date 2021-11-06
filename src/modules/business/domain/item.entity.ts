@@ -8,7 +8,9 @@ import {
     Table,
 } from 'sequelize-typescript';
 
-@Table
+@Table({
+    paranoid: true,
+})
 export class Item extends DomainModel {
     @PrimaryKey
     @Column

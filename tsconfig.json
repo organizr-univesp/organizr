@@ -12,6 +12,9 @@
         "baseUrl": "./",
         "incremental": true,
         "skipLibCheck": true,
+        "lib": [
+            "ES2021"
+        ],
         "paths": {
             "@/*": [
                 "src/*"

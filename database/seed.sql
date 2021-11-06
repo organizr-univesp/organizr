@@ -1,3 +1,5 @@
+select * from items;
+
 -- Clear the database
 delete from items_integrations;
 delete from integrations;

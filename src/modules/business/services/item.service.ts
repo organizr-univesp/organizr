@@ -1,8 +1,9 @@
-import { ItemIntegration } from '@/modules/business/domain/item-integration.entity';
 import { Item } from '@/modules/business/domain/item.entity';
 import { Project } from '@/modules/business/domain/project.entity';
 import { User } from '@/modules/business/domain/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import dashify = require('dashify');
+import { v4 } from 'uuid';
 
 @Injectable()
 export class ItemService {
@@ -43,6 +44,25 @@ export class ItemService {
 
         if (result == null || result.project.userId != user.id) {
             throw new NotFoundException('Item não encontrado.');
+        }
+
+        return result;
+    }
+
+    create(project: Project, name: string): Promise<Item> {
+        return Item.create({
+            id: v4(),
+            name: name,
+            projectId: project.id,
+            slug: this.getSlugForName(name),
+        });
+    }
+
+    private getSlugForName(name: string): string {
+        let result: string = dashify(name).replace(/[^A-Za-z0-9-]/g, '');
+
+        if (result.startsWith('-')) {
+            result = result.substring(1);
         }
 
         return result;

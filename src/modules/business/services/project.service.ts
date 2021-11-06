@@ -4,6 +4,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class ProjectService {
+    private ensureFound(project: Project) {
+        if (project == null) {
+            throw new NotFoundException('Projeto não encontrado.');
+        }
+    }
+
     async findAll(): Promise<Project[]> {
         return Project.findAll();
     }
@@ -24,9 +30,20 @@ export class ProjectService {
             },
         });
 
-        if (project == null) {
-            throw new NotFoundException('Projeto não encontrado.');
-        }
+        this.ensureFound(project);
+
+        return project;
+    }
+
+    async findById(user: User, id: string): Promise<Project> {
+        const project = await Project.findOne({
+            where: {
+                userId: user.id,
+                id: id,
+            },
+        });
+
+        this.ensureFound(project);
 
         return project;
     }

@@ -65,7 +65,7 @@
                     <div class="col-auto">
                         <div class="d-inline-flex flex-column">
                             <small class="text-muted">Ações</small>
-                            <div class="row gx-3">
+                            <div class="d-flex flex-sm-nowrap gap-3">
                                 <form action="/app/items/finish" method="post" class="d-inline-block mb-0">
                                     <input type="hidden" name="id" value="{{item/id}}">
                                     <input type="hidden" name="finished"
@@ -80,6 +80,16 @@
                                             <span>Concluir</span>
                                             <i class="bi bi-check2"></i>
                                             {{/if}}
+                                        </button>
+                                    </label>
+                                </form>
+                                <form action="/app/items/delete" method="post" class="d-inline-block mb-0">
+                                    <input type="hidden" name="id" value="{{item/id}}">
+                                    <label>
+                                        <button type="submit"
+                                            class="btn btn-link text-danger text-decoration-none border-0 p-0 shadow-none">
+                                            <span>Remover</span>
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </label>
                                 </form>

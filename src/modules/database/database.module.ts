@@ -27,7 +27,7 @@ export class DatabaseModule extends SequelizeModule {
             },
             quoteIdentifiers: false,
             define: {
-                timestamps: false,
+                timestamps: true,
             },
             models: [
                 User,

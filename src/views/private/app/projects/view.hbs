@@ -29,27 +29,44 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
+                            Nova Tarefa
+                        </h5>
+                        <form action="/app/items" method="post" class="mb-0">
+                            <input type="hidden" name="projectId" value="{{project/id}}">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control" placeholder="Descreva a tarefa...">
+                                <button class="btn btn-success">
+                                    <span>Adicionar</span>
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
                             Pendências ({{length pendingItems}})
                         </h5>
-                        <div class="d-flex flex-column mt-3">
+                        <div class="d-flex flex-column">
                             {{#isEmpty pendingItems}}
                             <small class="text-muted text-center">
                                 Nada pendente. 🎉
                             </small>
                             {{else}}
                             {{#forEach pendingItems}}
-                            <form action="/app/items/finish" method="post" class="mb-0">
-                                <input type="hidden" name="id" value="{{id}}">
-                                <input type="hidden" name="finished" value="false">
-                                <label>
-                                    <input type="checkbox" data-item="" oninput="onItemChange(event)">
-                                    <span>{{name}}</span>
-                                    <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
-                                        <span>Ver</span>
-                                        <i class="bi bi-arrow-right"></i>
-                                    </a>
-                                </label>
-                            </form>
+                            <label class="d-flex align-items-center gap-2">
+                                <form action="/app/items/finish" method="post" class="mb-0 d-inline-block">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <input type="hidden" name="finished" value="true">
+                                    <input type="checkbox" id="item-{{id}}" data-item="" oninput="onItemChange(event)">
+                                </form>
+                                <span>{{name}}</span>
+                                <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
+                                    <span>Ver</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </label>
                             {{/forEach}}
                             {{/isEmpty}}
                         </div>
@@ -67,19 +84,22 @@
                             </small>
                             {{else}}
                             {{#forEach finishedItems}}
-                            <form action="/app/items/finish" method="post" class="mb-0">
-                                <label>
+                            <label class="d-flex align-items-center gap-2">
+                                <form action="/app/items/finish" method="post"
+                                    class="mb-0 d-inline-flex align-items-center">
                                     <input type="hidden" name="id" value="{{id}}">
                                     <input type="hidden" name="finished" value="false">
                                     <input type="checkbox" id="item-{{id}}" data-item="" checked="checked"
                                         oninput="onItemChange(event)">
-                                    <span>{{name}}</span>
+                                </form>
+                                <span>{{name}}</span>
+                                <div class="d-inline-flex gap-3">
                                     <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
                                         <span>Ver</span>
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
-                                </label>
-                            </form>
+                                </div>
+                            </label>
                             {{/forEach}}
                             {{/isEmpty}}
                         </div>

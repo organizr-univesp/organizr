@@ -6,14 +6,16 @@ import {
     Controller,
     Get,
     Inject,
-    NotFoundException,
     Param,
     Render,
+    UseGuards,
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
+import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 
 @Controller('app/projects')
+@UseGuards(CookieAuthenticationGuard)
 export class ProjectsController {
     constructor(
         private readonly projectService: ProjectService,
