@@ -1,0 +1,135 @@
+<html lang='en'>
+
+<head>
+    {{> private/head}}
+    {{#with project}}
+    <title>Organizr - Projeto "{{name}}"</title>
+    {{/with}}
+</head>
+
+<body>
+    {{> private/header page='projects'}}
+
+    <div class="container my-5">
+        <div class="row justify-content-between">
+            {{#with project}}
+            <div class="col-auto">
+                <h1 class="display-6">{{name}}</h1>
+            </div>
+            {{/with}}
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 order-md-1">
+                <div class="card p-3 h-100">
+                    <p class="text-muted">Detalhes do Projeto</p>
+                    <code>TODO 🚧</code>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Nova Tarefa
+                        </h5>
+                        <form action="/app/items" method="post" class="mb-0">
+                            <input type="hidden" name="projectId" value="{{project/id}}">
+                            <div class="input-group">
+                                <input type="text" name="name" required class="form-control"
+                                    placeholder="Descreva a tarefa...">
+                                <button class="btn btn-success">
+                                    <span>Adicionar</span>
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Pendências ({{length pendingItems}})
+                        </h5>
+                        <div class="d-flex flex-column">
+                            {{#isEmpty pendingItems}}
+                            <small class="text-muted text-center">
+                                Nada pendente. 🎉
+                            </small>
+                            {{else}}
+                            {{#forEach pendingItems}}
+                            <label class="d-flex align-items-center gap-2">
+                                <form action="/app/items/finish" method="post" class="mb-0 d-inline-block">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <input type="hidden" name="finished" value="true">
+                                    <input type="checkbox" id="item-{{id}}" data-item="" oninput="onItemChange(event)">
+                                </form>
+                                <span>{{name}}</span>
+                                <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
+                                    <span>Ver</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </label>
+                            {{/forEach}}
+                            {{/isEmpty}}
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Concluídos ({{length finishedItems}})
+                        </h5>
+                        <div class="d-flex flex-column mt-3">
+                            {{#isEmpty finishedItems}}
+                            <small class="text-muted text-center">
+                                Nada concluído até o momento. 💭
+                            </small>
+                            {{else}}
+                            {{#forEach finishedItems}}
+                            <label class="d-flex align-items-center gap-2">
+                                <form action="/app/items/finish" method="post"
+                                    class="mb-0 d-inline-flex align-items-center">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <input type="hidden" name="finished" value="false">
+                                    <input type="checkbox" id="item-{{id}}" data-item="" checked="checked"
+                                        oninput="onItemChange(event)">
+                                </form>
+                                <span>{{name}}</span>
+                                <div class="d-inline-flex gap-3">
+                                    <a href="/app/projects/s/{{../project/slug}}/{{slug}}" class="text-decoration-none">
+                                        <span>Ver</span>
+                                        <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </label>
+                            {{/forEach}}
+                            {{/isEmpty}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * @param {Event} event
+         */
+        function onItemChange(event) {
+            /** @type {HTMLInputElement} */
+            const target = event.target;
+            /** @type {boolean} */
+            const checked = target.checked;
+
+            document
+                .querySelectorAll('input[type="checkbox"][data-item]')
+                .forEach(x => x.setAttribute('disabled', true));
+
+            target.form.finished.value = checked;
+            target.form.submit();
+        }
+    </script>
+
+    {{> private/footer}}
+</body>
+
+</html>

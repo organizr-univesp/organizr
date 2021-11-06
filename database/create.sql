@@ -32,6 +32,7 @@ create table items (
     name varchar(256) not null,
     project_id uuid not null,
     slug varchar(256) not null,
+    finished_at timestamp without time zone null,
     created_at timestamp without time zone not null default now(),
     updated_at timestamp without time zone not null default now(),
     deleted_at timestamp without time zone null,

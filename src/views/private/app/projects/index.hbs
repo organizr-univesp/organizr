@@ -1,0 +1,58 @@
+<html lang='en'>
+
+<head>
+    {{> private/head}}
+    <title>Organizr - Projetos</title>
+</head>
+
+<body>
+    {{> private/header page='projects'}}
+
+    <div class="container my-5">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h1 class="display-6">Projetos</h1>
+            </div>
+            <div class="col-auto">
+                <a href="/app/projects/new" class="btn btn-success disabled">
+                    <span>Criar Novo</span>
+                    <i class="bi bi-plus-lg"></i>
+                </a>
+            </div>
+        </div>
+        {{#isEmpty projects}}
+        Nenhum projeto encontrado.
+        {{else}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#forEach projects}}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-inline-block p-1 rounded-3" style="background-color: {{color}}"></div>
+                            <span>{{name}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <a href="/app/projects/s/{{slug}}" class="text-decoration-none">
+                            <span>Ver</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </td>
+                </tr>
+                {{/forEach}}
+            </tbody>
+        </table>
+        {{/isEmpty}}
+    </div>
+
+    {{> private/footer}}
+</body>
+
+</html>

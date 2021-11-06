@@ -1,0 +1,20 @@
+<html lang='en'>
+
+<head>
+    {{> public/head}}
+    <title>Organizr - Acesso Negado</title>
+</head>
+
+<body>
+    {{#if authenticated}}
+    {{> private/header}}
+    {{else}}
+    {{> public/header}}
+    {{/if}}
+
+    {{{body}}}
+
+    {{> public/footer}}
+</body>
+
+</html>

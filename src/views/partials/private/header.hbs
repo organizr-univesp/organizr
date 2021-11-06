@@ -4,6 +4,15 @@
         <a href="/" class="navbar-brand">
             {{> shared/logo}}
         </a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link {{#eq page 'projects'}}active{{/eq}}" aria-current="page"
+                    href="/app/projects">Projetos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{#eq page 'settings'}}active{{/eq}}" href="/app/settings">Configurações</a>
+            </li>
+        </ul>
         <div class="row justify-content-end gx-3">
             <div class="col-auto">
                 <form action="/authentication/sign-out" method="post" class="m-0">

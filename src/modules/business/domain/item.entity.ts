@@ -8,7 +8,9 @@ import {
     Table,
 } from 'sequelize-typescript';
 
-@Table
+@Table({
+    paranoid: true,
+})
 export class Item extends DomainModel {
     @PrimaryKey
     @Column
@@ -28,4 +30,9 @@ export class Item extends DomainModel {
 
     @Column
     slug: string;
+
+    @Column({
+        field: 'finished_at',
+    })
+    finishedAt: Date | null;
 }
