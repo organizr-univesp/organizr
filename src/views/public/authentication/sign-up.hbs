@@ -1,37 +1,53 @@
 <html lang="en">
+
 <head>
-    {{>public/head}}
-    <title>Criar Conta</title>
+    {{> public/head}}
+    <title>Organizr - Criar Conta</title>
 </head>
-<body class="body-grad my-font-family">
-   
-    <main class="container d-flex justify-content-center" style="height: 90vh;">
-        <article class="col-6 col-sm-3 d-flex flex-column align-items-center justify-content-center">
-            <div class="mb-5">
-                {{>shared/logo}}
+
+<body class="vh-100 d-flex flex-column bg-light">
+    <div class="container flex-grow-1">
+        <div class="row justify-content-center align-content-center py-5 h-100">
+            <div class="col-12 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                <div class="mb-4 d-flex justify-content-center">
+                    {{>shared/logo}}
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">
+                            Criar Conta
+                        </h5>
+                        <form method="post" class="row g-3">
+                            <div class="col-12">
+                                <label for="name" class="form-label">Nome</label>
+                                <input type="text" class="form-control" id="name" autofocus required maxlength="64">
+                            </div>
+                            <div class="col-12">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" required maxlength="64">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="password" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="password" required maxlength="64">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <label for="confirmPassword" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmPassword" required
+                                    maxlength="64">
+                            </div>
+                            <div class="col-12 mt-4 d-grid">
+                                <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            </div>
+                        </form>
+                        <div class="form-text text-center">
+                            Já tem uma conta? <a href="/authentication/sign-in">Entre</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h5 class="mb-4 text-uppercase text-secondary">Criar conta</h5>
-            <hr class="w-100 mt-0 mb-4">
-            <form class="w-100">
-                <div class="form-group w-100 mt-2 mb-3">
-                    <input type="email" class="form-control w-100" id="" aria-describedby="emailHelp" placeholder="Nome">
-                </div>
-                <div class="form-group w-100 mb-3">
-                    <input type="email" class="form-control w-100" id="" aria-describedby="emailHelp" placeholder="Email">
-                </div>
-                <div class="form-group w-100 mb-3">
-                    <input type="password" class="form-control" id="" placeholder="Senha">
-                </div>
-                <div class="form-group w-100 mb-3">
-                    <input type="password" class="form-control" id="" placeholder="Confirmar Senha">
-                </div>
-                <div class="form-group w-100 mb-2">
-                    <button type="submit" class="btn btn-primary w-100">Criar conta</button>
-                </div>
-                <p class="text-center">Já tem uma conta? <a href="#">Entre</a></p>
-            </form>
-        </article>
-    </main>
+        </div>
+    </div>
     {{>public/footer}}
 </body>
+
 </html>

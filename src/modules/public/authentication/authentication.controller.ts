@@ -40,12 +40,8 @@ export class AuthenticationController {
 
     @Get('sign-up')
     @Render('public/authentication/sign-up')
-    signUpGet(
-        @Query('wrong-credentials') wrongCredentials: boolean,
-    ): Record<string, unknown> {
-        return {
-            wrongCredentials: wrongCredentials !== undefined,
-        };
+    signUpGet(): void {
+        // Render-only
     }
 
     @Post('sign-out')

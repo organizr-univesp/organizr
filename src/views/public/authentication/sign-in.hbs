@@ -5,49 +5,59 @@
     <title>Organizr - Entrar</title>
 </head>
 
-<body class="vh-100 d-flex flex-column">
+<body class="vh-100 d-flex flex-column bg-light">
     {{> public/header hide-sign-in=true}}
 
     <div class="container py-5 my-5 flex-grow-1">
         <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                <form action="/authentication/sign-in" method="post">
-                    <div class="mb-3">
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email"
-                            class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password">Senha</label>
-                        <input type="password" name="password" id="password"
-                            class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
-                        <div class="form-text">
-                            <a href="/forgot-password" class="link-primary">
-                                Esqueci a senha
-                            </a>
-                        </div>
-                        {{#if wrongCredentials}}
-                        <div class="alert alert-danger mt-3" role="alert">
-                            <div class="row align-items-center gx-2">
-                                <div class="col-auto">
-                                    <i class="bi-exclamation-circle mr-2"></i>
-                                </div>
-                                <div class="col-auto">
-                                    <span>Credenciais inválidas</span>
+            <div class="col-12 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                <div class="mb-4 d-flex justify-content-center">
+                    {{>shared/logo}}
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">
+                            Entrar
+                        </h5>
+                        <form method="post" class="row g-3">
+                            <div class="col-12">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" name="email" id="email" autofocus
+                                    class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="password" class="form-label">Senha</label>
+                                <input type="password" name="password" id="password"
+                                    class="form-control {{#if wrongCredentials}}is-invalid{{/if}}" required>
+                                <div class="form-text">
+                                    <a href="/forgot-password" class="link-primary">
+                                        Esqueci a senha
+                                    </a>
                                 </div>
                             </div>
+                            {{#if wrongCredentials}}
+                            <div class="col-12">
+                                <div class="alert alert-danger mt-3" role="alert">
+                                    <div class="row align-items-center gx-2">
+                                        <div class="col-auto">
+                                            <i class="bi-exclamation-circle mr-2"></i>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span>Credenciais inválidas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/if}}
+                            <div class="col-12 mt-4 d-grid">
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </form>
+                        <div class="form-text text-center">
+                            Ainda não tem conta? <a href="/authentication/sign-up">Criar Conta</a>
                         </div>
-                        {{/if}}
                     </div>
-                    <div class="row gx-3 justify-content-end align-items-center mt-3">
-                        <div class="col-auto">
-                            <a href="/sign-up" class="link-primary">Criar Conta</a>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">Entrar</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
