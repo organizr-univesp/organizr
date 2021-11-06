@@ -34,7 +34,8 @@
                         <form action="/app/items" method="post" class="mb-0">
                             <input type="hidden" name="projectId" value="{{project/id}}">
                             <div class="input-group">
-                                <input type="text" name="name" class="form-control" placeholder="Descreva a tarefa...">
+                                <input type="text" name="name" required class="form-control"
+                                    placeholder="Descreva a tarefa...">
                                 <button class="btn btn-success">
                                     <span>Adicionar</span>
                                     <i class="bi bi-plus-lg"></i>
