@@ -1,4 +1,3 @@
-import { Roles } from './../../private/decorators/roles.decorator';
 import { UserRole } from '@/modules/business/domain/user-role.entity';
 import { v4 } from 'uuid';
 import { User } from '@/modules/business/domain/user.entity';
@@ -6,14 +5,17 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Sequelize } from 'sequelize-typescript';
 import { createHash } from 'crypto';
 import { isEmail } from 'class-validator';
+import { EmailService } from '@/modules/business/services/email.service';
 
 @Injectable()
 export class UserService {
+    constructor(private readonly emailService: EmailService) {}
+
     static hashPassword(password: string): string {
         return createHash('sha512').update(password, 'utf-8').digest('hex');
     }
 
-    async findByCredentails(email: string, password: string): Promise<User> {
+    async findByCredentials(email: string, password: string): Promise<User> {
         const passwordHash = UserService.hashPassword(password);
 
         return User.findOne({
@@ -71,6 +73,26 @@ export class UserService {
             passwordHash: UserService.hashPassword(password),
             fullName: fullName,
             role: UserRole.regular,
+        });
+    }
+
+    async refreshPassword(user: User): Promise<string> {
+        const newPassword = v4().substring(0, 8);
+
+        user.passwordHash = UserService.hashPassword(newPassword);
+        await user.save();
+
+        return newPassword;
+    }
+
+    async sendForgotPasswordEmail(
+        user: User,
+        newPassword: string,
+    ): Promise<void> {
+        await this.emailService.send({
+            to: user.email,
+            displayName: user.fullName,
+            htmlBody: `Sua nova senha é: "${newPassword}"`,
         });
     }
 }

@@ -10,7 +10,7 @@ export class AuthenticationService {
         email: string,
         password: string,
     ): Promise<User | null> {
-        const user = await this.userService.findByCredentails(email, password);
+        const user = await this.userService.findByCredentials(email, password);
 
         return user;
     }
