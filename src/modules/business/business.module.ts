@@ -1,11 +1,12 @@
 import { AuthenticationService } from '@/modules/business/services/authentication.service';
+import { EmailService } from '@/modules/business/services/email.service';
 import { IntegrationCategoryService } from '@/modules/business/services/integration-category.service';
 import { IntegrationService } from '@/modules/business/services/integration.service';
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
 import { ItemService } from '@/modules/business/services/item.service';
 import { ProjectService } from '@/modules/business/services/project.service';
 import { UserService } from '@/modules/business/services/user.service';
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 
 @Module({
     providers: [
@@ -16,6 +17,8 @@ import { Module } from '@nestjs/common';
         IntegrationService,
         IntegrationCategoryService,
         AuthenticationService,
+        EmailService,
+        Logger,
     ],
     exports: [
         UserService,
