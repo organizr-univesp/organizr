@@ -7,14 +7,14 @@
     {{/with}}
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column">
     {{> private/header page='projects'}}
 
-    <div class="container my-5">
+    <div class="container my-5 flex-grow-1">
         <div class="row justify-content-between">
             {{#with project}}
             <div class="col-auto">
-                <h1 class="display-6">{{name}}</h1>
+                <h1 class="display-6 mb-3">{{name}}</h1>
             </div>
             {{/with}}
         </div>
