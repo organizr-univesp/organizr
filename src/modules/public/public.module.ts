@@ -1,6 +1,6 @@
 import { BusinessModule } from '@/modules/business/business.module';
 import { PublicOnlyMiddleware } from '@/modules/private/middlewares/public-only.middleware';
-import { AuthenticationController } from '@/modules/public/authentication/authentication.controller';
+import { AuthenticationController } from '@/modules/public/authentication/index.controller';
 import { ErrorController } from '@/modules/public/error.controller';
 import { IndexController } from '@/modules/public/index/index.controller';
 import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
