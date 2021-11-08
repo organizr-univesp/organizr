@@ -28,6 +28,7 @@ import { Logger, Module } from '@nestjs/common';
         IntegrationService,
         IntegrationCategoryService,
         AuthenticationService,
+        EmailService,
     ],
 })
 export class BusinessModule {}

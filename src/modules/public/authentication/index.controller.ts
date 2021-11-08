@@ -1,6 +1,8 @@
+import { User } from './../../business/domain/user.entity';
 import { UserService } from '@/modules/business/services/user.service';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { LogInWithCredentialsGuard } from '@/modules/private/guards/log-in-with-credentials.guard';
+import { ForgotPasswordDto } from '@/modules/public/authentication/models/forgot-password.dto';
 import { SignUpDto } from '@/modules/public/authentication/models/sign-up.dto';
 import {
     Controller,
@@ -72,5 +74,36 @@ export class AuthenticationController {
         request.logOut();
         request.session = null;
         response.redirect('/');
+    }
+
+    @Get('forgot-password')
+    @Render('public/authentication/forgot-password')
+    forgotPasswordGet(): void {
+        // Render-only
+    }
+
+    @Post('forgot-password')
+    async forgotPasswordPost(
+        @Body() forgotPasswordDto: ForgotPasswordDto,
+        @Res() response: Response,
+    ): Promise<void> {
+        const user = await User.findOne({
+            where: {
+                email: forgotPasswordDto.email,
+            },
+        });
+
+        if (user) {
+            const newPassword = await this.userService.refreshPassword(user);
+            this.userService.sendForgotPasswordEmail(user, newPassword);
+        }
+
+        response.redirect('/authentication/forgot-password/success');
+    }
+
+    @Get('forgot-password/success')
+    @Render('public/authentication/forgot-password-success')
+    forgotPasswordSuccess(): void {
+        // Render-only
     }
 }
