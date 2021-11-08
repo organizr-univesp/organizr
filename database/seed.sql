@@ -1,4 +1,4 @@
-select * from items;
+select * from users;
 
 -- Clear the database
 delete from items_integrations;
