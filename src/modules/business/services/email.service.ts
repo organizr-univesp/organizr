@@ -24,7 +24,7 @@ export class EmailService {
 
     async send(message: EmailMessage): Promise<void> {
         await this.emailClient.messages.create(process.env.MAILGUN_DOMAIN, {
-            from: 'Suporte',
+            from: 'Suporte <suporte@organizr.com>',
             subject: 'Sua senha foi redefinida',
             to: [`${message.displayName} <${message.to}>`],
             html: message.htmlBody,
