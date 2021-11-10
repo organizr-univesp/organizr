@@ -28,7 +28,7 @@ export class AuthenticationController {
     @Get('sign-in')
     @Render('public/authentication/sign-in')
     signInGet(
-        @Query('wrong-credentials') wrongCredentials: boolean,
+        @Query('wrong-credentials') wrongCredentials: string | undefined,
     ): Record<string, unknown> {
         return {
             wrongCredentials: wrongCredentials !== undefined,
