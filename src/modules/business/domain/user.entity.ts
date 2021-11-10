@@ -23,4 +23,14 @@ export class User extends DomainModel {
 
     @Column
     role: UserRole;
+
+    @Column({
+        field: 'activation_key',
+    })
+    activationKey: string;
+
+    @Column({
+        field: 'activated_at',
+    })
+    activatedAt?: Date;
 }

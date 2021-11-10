@@ -9,10 +9,10 @@ export abstract class DomainModel extends Model {
     @Column({
         field: 'updated_at',
     })
-    updatedAt: Date | null;
+    updatedAt?: Date;
 
     @Column({
         field: 'deleted_at',
     })
-    deletedAt: Date | null;
+    deletedAt?: Date;
 }

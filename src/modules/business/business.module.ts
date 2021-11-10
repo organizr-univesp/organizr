@@ -1,5 +1,6 @@
 import { AuthenticationService } from '@/modules/business/services/authentication.service';
 import { EmailService } from '@/modules/business/services/email.service';
+import { EnvironmentService } from '@/modules/business/services/environment.service';
 import { IntegrationCategoryService } from '@/modules/business/services/integration-category.service';
 import { IntegrationService } from '@/modules/business/services/integration.service';
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
@@ -18,6 +19,7 @@ import { Logger, Module } from '@nestjs/common';
         IntegrationCategoryService,
         AuthenticationService,
         EmailService,
+        EnvironmentService,
         Logger,
     ],
     exports: [
@@ -29,6 +31,7 @@ import { Logger, Module } from '@nestjs/common';
         IntegrationCategoryService,
         AuthenticationService,
         EmailService,
+        EnvironmentService,
     ],
 })
 export class BusinessModule {}

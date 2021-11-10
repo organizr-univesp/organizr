@@ -3,6 +3,7 @@ import SendGrid = require('@sendgrid/mail');
 
 export interface EmailMessage {
     to: string;
+    subject: string;
     displayName: string;
     htmlBody: string;
 }
@@ -17,7 +18,7 @@ export class EmailService {
         try {
             await SendGrid.send({
                 from: 'Lucas da Organizr <lv201122@gmail.com>',
-                subject: 'Redefinição de Senha',
+                subject: message.subject,
                 to: [message.to],
                 html: message.htmlBody,
             });
