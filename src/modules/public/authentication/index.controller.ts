@@ -1,4 +1,4 @@
-import { User } from './../../business/domain/user.entity';
+import { User } from '@/modules/business/domain/user.entity';
 import { UserService } from '@/modules/business/services/user.service';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { LogInWithCredentialsGuard } from '@/modules/private/guards/log-in-with-credentials.guard';
