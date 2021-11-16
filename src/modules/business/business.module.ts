@@ -6,6 +6,9 @@ import { IntegrationService } from '@/modules/business/services/integration.serv
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
 import { ItemService } from '@/modules/business/services/item.service';
 import { ProjectService } from '@/modules/business/services/project.service';
+import { GoogleAuthService } from '@/modules/business/services/third-party/google-auth.service';
+import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
+import { UserExternalIntegrationService } from '@/modules/business/services/user-external-integration.service';
 import { UserService } from '@/modules/business/services/user.service';
 import { Logger, Module } from '@nestjs/common';
 
@@ -17,9 +20,12 @@ import { Logger, Module } from '@nestjs/common';
         ItemIntegrationService,
         IntegrationService,
         IntegrationCategoryService,
+        UserExternalIntegrationService,
         AuthenticationService,
         EmailService,
         EnvironmentService,
+        GoogleAuthService,
+        GoogleCalendarService,
         Logger,
     ],
     exports: [
@@ -29,9 +35,12 @@ import { Logger, Module } from '@nestjs/common';
         ItemIntegrationService,
         IntegrationService,
         IntegrationCategoryService,
+        UserExternalIntegrationService,
         AuthenticationService,
         EmailService,
         EnvironmentService,
+        GoogleAuthService,
+        GoogleCalendarService,
     ],
 })
 export class BusinessModule {}

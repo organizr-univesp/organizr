@@ -1,6 +1,7 @@
 import { BusinessModule } from '@/modules/business/business.module';
 import { DatabaseModule } from '@/modules/database/database.module';
 import { AppController } from '@/modules/private/controllers/app.controller';
+import { IntegrationsController } from '@/modules/private/controllers/integrations.controller';
 import { ItemsController } from '@/modules/private/controllers/items/index.controller';
 import { ProjectsController } from '@/modules/private/controllers/projects.controller';
 import { SettingsController } from '@/modules/private/controllers/settings.controller';
@@ -24,6 +25,7 @@ import { PassportModule } from '@nestjs/passport';
         ProjectsController,
         ItemsController,
         SettingsController,
+        IntegrationsController,
     ],
     providers: [
         Logger,

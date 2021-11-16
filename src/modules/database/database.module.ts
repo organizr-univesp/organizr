@@ -6,6 +6,7 @@ import { Project } from '@/modules/business/domain/project.entity';
 import { User } from '@/modules/business/domain/user.entity';
 import { DynamicModule } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { UserExternalIntegration } from '@/modules/business/domain/user-external-integration.entity';
 
 export class DatabaseModule extends SequelizeModule {
     static forRoot(): DynamicModule {
@@ -36,6 +37,7 @@ export class DatabaseModule extends SequelizeModule {
                 ItemIntegration,
                 Integration,
                 IntegrationCategory,
+                UserExternalIntegration,
             ],
         });
     }

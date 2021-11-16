@@ -396,3 +396,6 @@ Temporary Items
 # Local
 .env
 dist
+
+# Google APIs sensitive data
+client-secret*.json

@@ -8,10 +8,95 @@
 <body class="min-vh-100 d-flex flex-column">
     {{> private/header page='settings'}}
 
-    <div class="container flex-grow-1">
-        <p class="text-center my-5">
-            <code>TODO 🚧</code>
-        </p>
+    <div class="container my-5 flex-grow-1">
+        <div class="row justify-content-between">
+            <h1 class="display-6">Configurações</h1>
+        </div>
+        <div class="col-auto">
+            <hr>
+        </div>
+        <div class="col-auto">
+            <h2 class="fs-3 mb-3 fw-light">Integrações</h2>
+            <div class="row align-items-stretch">
+                <div class="col-auto">
+                    <div class="card h-100" style="width: 320px">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row align-items-center gx-3 mb-3">
+                                <div class="col-auto">
+                                    <img src="/images/google-g.svg" width="24" alt="Google logo">
+                                </div>
+                                <div class="col-auto">
+                                    <h5 class="card-title mb-0">
+                                        Google
+                                    </h5>
+                                </div>
+                            </div>
+                            <p class="card-text mb-2">
+                                {{#if externalIntegrations/hasGoogle}}
+                                Você pode usar:
+                                {{else}}
+                                Conecte sua conta para usar:
+                                {{/if}}
+                            </p>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <img src="/images/google-calendar.svg" width="24" alt="Google Calendar logo">
+                                    &nbsp;
+                                    <span>Calendário</span>
+                                </li>
+                            </ul>
+                            <div class="flex-grow-1"></div>
+                            <div class="row justify-content-end gx-3 mt-3">
+                                <div class="col-auto">
+                                    {{#if externalIntegrations/hasGoogle}}
+                                    <span class="text-success">
+                                        <span>Conectado</span>
+                                        <i class="bi bi-check-lg"></i>
+                                    </span>
+                                    {{else}}
+                                    <a class="btn btn-success" href="/integrations/google">
+                                        <span>Conectar</span>
+                                        <i class="bi bi-plus-lg"></i>
+                                    </a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="card h-100" style="width: 320px">
+                        <div class="card-body d-flex flex-column">
+                            <div class="row align-items-center gx-3 mb-3">
+                                <div class="col-auto">
+                                    <img src="/images/trello.svg" width="24" alt="Google logo">
+                                </div>
+                                <div class="col-auto">
+                                    <h5 class="card-title mb-0">
+                                        Trello
+                                    </h5>
+                                </div>
+                            </div>
+                            <p class="card-text mb-2">
+                                Conecte sua conta para usar o Trello.
+                            </p>
+                            <div class="flex-grow-1"></div>
+                            <div class="row justify-content-end align-items-center gx-3 mt-3">
+                                <div class="col-auto">
+                                    <code>TODO 🚧</code>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-success disabled">
+                                        <span>Conectar</span>
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     {{> private/footer}}

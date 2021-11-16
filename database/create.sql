@@ -5,6 +5,7 @@ drop table if exists integration_categories;
 drop table if exists items;
 drop table if exists projects;
 drop table if exists users;
+drop table if exists user_external_integrations;
 -- Creating the tables
 create table users (
     id uuid not null primary key,
@@ -70,4 +71,14 @@ create table items_integrations (
     primary key (item_id, integration_id),
     foreign key (item_id) references items (id),
     foreign key (integration_id) references integrations (id)
+);
+create table user_external_integrations (
+    user_id uuid not null,
+    type varchar(32) not null,
+    meta text not null,
+    created_at timestamp without time zone not null default now(),
+    updated_at timestamp without time zone not null default now(),
+    deleted_at timestamp without time zone null,
+    primary key (user_id, type),
+    foreign key (user_id) references users (id)
 );

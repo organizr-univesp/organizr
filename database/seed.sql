@@ -33,7 +33,7 @@ insert into integrations (
 values (
         gen_random_uuid(),
         'Google Calendar',
-        'https://upload.wikimedia.org/wikipedia/commons/a/a5/Google_Calendar_icon_%282020%29.svg',
+        '/images/google-calendar.svg',
         '#4285F4',
         'google-calendar',
         calendar_id
@@ -41,7 +41,7 @@ values (
     (
         gen_random_uuid(),
         'Trello',
-        'https://www.vectorlogo.zone/logos/trello/trello-tile.svg',
+        '/images/trello.svg',
         '#0075B9',
         'trello',
         task_management_id
