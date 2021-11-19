@@ -1,0 +1,72 @@
+<html lang="en">
+
+<head>
+    {{> private/head}}
+    <title>Organizr - Nova Atividade</title>
+</head>
+
+<body class="vh-100 d-flex flex-column bg-light">
+    {{> private/header page='projects'}}
+    <div class="container flex-grow-1">
+        <div class="h-100 row justify-content-center align-items-center py-5">
+            <div class="col-12 col-sm-9 col-md-6 col-lg-5 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">
+                            Criar Projeto
+                        </h5>
+                        <form method="post" class="row g-3 mb-0">
+                            <div class="col-12">
+                                <label for="name" class="form-label">Nome</label>
+                                <input name="name" type="text" class="form-control" id="name" autofocus required
+                                    maxlength="128" placeholder="Nome do Projeto">
+                            </div>
+                            <div class="col-12">
+                                <label for="color" class="form-label">Cor</label>
+                                <div class="input-group">
+                                    <div id="colorPrepend" class="input-group-text p-3"
+                                        style="background-color: #006efd">
+                                    </div>
+                                    <select id="color" name="color" class="form-select">
+                                        <option value="#006efd" checked>Azul</option>
+                                        <option value="#198754">Verde</option>
+                                        <option value="#dc3545">Vermelho</option>
+                                        <option value="#ffc107">Amarelo</option>
+                                        <option value="#6c757d">Cinza</option>
+                                        <option value="#212529">Preto</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="row align-items-center justify-content-end gx-3">
+                                    <div class="col-auto">
+                                        <a href="/app/projects" class="link">Voltar</a>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-success">
+                                            <span>Criar</span>
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            const colorInput = document.getElementById('color');
+            const colorPrepend = document.getElementById('colorPrepend');
+
+            colorInput.addEventListener('change', (e) => {
+                colorPrepend.style.backgroundColor = e.target.value;
+            });
+        });
+    </script>
+    {{>private/footer}}
+</body>
+
+</html>

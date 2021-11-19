@@ -1,12 +1,14 @@
 import { Item } from '@/modules/business/domain/item.entity';
 import { Project } from '@/modules/business/domain/project.entity';
 import { User } from '@/modules/business/domain/user.entity';
+import { SlugService } from '@/modules/business/services/slug.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import dashify = require('dashify');
 import { v4 } from 'uuid';
 
 @Injectable()
 export class ItemService {
+    constructor(private readonly slugService: SlugService) {}
+
     async findAll(): Promise<Item[]> {
         return Item.findAll();
     }
@@ -54,17 +56,7 @@ export class ItemService {
             id: v4(),
             name: name,
             projectId: project.id,
-            slug: this.getSlugForName(name),
+            slug: this.slugService.getForName(name),
         });
-    }
-
-    private getSlugForName(name: string): string {
-        let result: string = dashify(name).replace(/[^A-Za-z0-9-]/g, '');
-
-        if (result.startsWith('-')) {
-            result = result.substring(1);
-        }
-
-        return result;
     }
 }

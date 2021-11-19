@@ -5,6 +5,7 @@ import { IntegrationService } from '@/modules/business/services/integration.serv
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
 import { ItemService } from '@/modules/business/services/item.service';
 import { ProjectService } from '@/modules/business/services/project.service';
+import { SlugService } from '@/modules/business/services/slug.service';
 import { UserService } from '@/modules/business/services/user.service';
 import { Logger, Module } from '@nestjs/common';
 
@@ -18,6 +19,7 @@ import { Logger, Module } from '@nestjs/common';
         IntegrationCategoryService,
         AuthenticationService,
         EmailService,
+        SlugService,
         Logger,
     ],
     exports: [
@@ -29,6 +31,7 @@ import { Logger, Module } from '@nestjs/common';
         IntegrationCategoryService,
         AuthenticationService,
         EmailService,
+        SlugService,
     ],
 })
 export class BusinessModule {}
