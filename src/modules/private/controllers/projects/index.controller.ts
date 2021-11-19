@@ -3,16 +3,20 @@ import { User } from '@/modules/business/domain/user.entity';
 import { ItemService } from '@/modules/business/services/item.service';
 import { ProjectService } from '@/modules/business/services/project.service';
 import {
+    Body,
     Controller,
     Get,
     Inject,
     Param,
+    Post,
     Render,
+    Res,
     UseGuards,
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
+import { ProjectCreateDto } from '@/modules/private/controllers/projects/models/project-create.dto';
 
 @Controller('app/projects')
 @UseGuards(CookieAuthenticationGuard)
@@ -24,6 +28,25 @@ export class ProjectsController {
         @Inject(REQUEST)
         private readonly request: Request,
     ) {}
+
+    @Get('new')
+    @Render('private/app/projects/new/index')
+    createGet(): void {
+        // Render-only
+    }
+
+    @Post('new')
+    async createPost(
+        @Body() projectCreateDto: ProjectCreateDto,
+        @Res() response: Response,
+    ): Promise<void> {
+        const project = await this.projectService.create(
+            response.req.user as User,
+            projectCreateDto.name,
+            projectCreateDto.color,
+        );
+        response.redirect(`/app/projects/s/${project.slug}`);
+    }
 
     @Get()
     @Render('private/app/projects/index')
