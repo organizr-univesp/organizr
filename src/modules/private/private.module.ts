@@ -3,7 +3,7 @@ import { DatabaseModule } from '@/modules/database/database.module';
 import { AppController } from '@/modules/private/controllers/app.controller';
 import { IntegrationsController } from '@/modules/private/controllers/integrations.controller';
 import { ItemsController } from '@/modules/private/controllers/items/index.controller';
-import { ProjectsController } from '@/modules/private/controllers/projects.controller';
+import { ProjectsController } from '@/modules/private/controllers/projects/index.controller';
 import { SettingsController } from '@/modules/private/controllers/settings.controller';
 import { ValidationPipe } from '@/modules/private/pipes/validation.pipe';
 import { LocalSerializer } from '@/modules/private/serializer/local.serializer';

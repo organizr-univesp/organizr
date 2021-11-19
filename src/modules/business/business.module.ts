@@ -9,6 +9,7 @@ import { ProjectService } from '@/modules/business/services/project.service';
 import { GoogleAuthService } from '@/modules/business/services/third-party/google-auth.service';
 import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
 import { UserExternalIntegrationService } from '@/modules/business/services/user-external-integration.service';
+import { SlugService } from '@/modules/business/services/slug.service';
 import { UserService } from '@/modules/business/services/user.service';
 import { Logger, Module } from '@nestjs/common';
 
@@ -23,6 +24,7 @@ import { Logger, Module } from '@nestjs/common';
         UserExternalIntegrationService,
         AuthenticationService,
         EmailService,
+        SlugService,
         EnvironmentService,
         GoogleAuthService,
         GoogleCalendarService,
@@ -38,6 +40,7 @@ import { Logger, Module } from '@nestjs/common';
         UserExternalIntegrationService,
         AuthenticationService,
         EmailService,
+        SlugService,
         EnvironmentService,
         GoogleAuthService,
         GoogleCalendarService,
