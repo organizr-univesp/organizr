@@ -12,6 +12,8 @@ create table users (
     password_hash varchar(1024) not null,
     full_name varchar(256) null,
     role int not null default 0,
+    activation_key uuid not null,
+    activated_at timestamp without time zone null,
     created_at timestamp without time zone not null default now(),
     updated_at timestamp without time zone not null default now(),
     deleted_at timestamp without time zone null

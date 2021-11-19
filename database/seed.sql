@@ -1,5 +1,3 @@
-select * from users;
-
 -- Clear the database
 delete from items_integrations;
 delete from integrations;
@@ -53,21 +51,27 @@ insert into users (
         email,
         password_hash,
         full_name,
-        role
+        role,
+        activation_key,
+        activated_at
     )
 values (
         user_id,
         'test+user@organizr.com',
         encode(sha512('test+user'), 'hex'),
         'Organizr User',
-        0
+        0,
+        gen_random_uuid(),
+        now()
     ),
     (
         admin_id,
         'test+administrator@organizr.com',
         encode(sha512('test+administrator'), 'hex'),
         'Organizr Administrator',
-        0
+        0,
+        gen_random_uuid(),
+        now()
     );
 insert into projects (
         id,

@@ -1,4 +1,4 @@
-import { User } from './../../business/domain/user.entity';
+import { User } from '@/modules/business/domain/user.entity';
 import { UserService } from '@/modules/business/services/user.service';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { LogInWithCredentialsGuard } from '@/modules/private/guards/log-in-with-credentials.guard';
@@ -15,6 +15,7 @@ import {
     Logger,
     Req,
     Body,
+    Param,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
@@ -28,7 +29,7 @@ export class AuthenticationController {
     @Get('sign-in')
     @Render('public/authentication/sign-in')
     signInGet(
-        @Query('wrong-credentials') wrongCredentials: boolean,
+        @Query('wrong-credentials') wrongCredentials: string | undefined,
     ): Record<string, unknown> {
         return {
             wrongCredentials: wrongCredentials !== undefined,
@@ -57,12 +58,28 @@ export class AuthenticationController {
         @Body() signUpDto: SignUpDto,
         @Res() response: Response,
     ): Promise<void> {
-        const user = await this.userService.create(
+        await this.userService.create(
             signUpDto.fullName,
             signUpDto.email,
             signUpDto.password,
             signUpDto.confirmPassword,
         );
+
+        response.redirect('/authentication/activate');
+    }
+
+    @Get('activate')
+    @Render('public/authentication/activate')
+    activate(): void {
+        // Render-only
+    }
+
+    @Get('activate/:key')
+    async activateByKey(
+        @Param('key') key: string,
+        @Res() response: Response,
+    ): Promise<void> {
+        const user = await this.userService.activateByKey(key);
 
         await new Promise((res) => response.req.logIn(user, res));
         response.redirect('/app');
