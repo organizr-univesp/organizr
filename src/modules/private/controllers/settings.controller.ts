@@ -1,6 +1,4 @@
-import { UserExternalIntegrationType } from '@/modules/business/domain/user-external-integration.entity';
 import { User } from '@/modules/business/domain/user.entity';
-import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
 import { UserExternalIntegrationService } from '@/modules/business/services/user-external-integration.service';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { Controller, Get, Inject, Render, UseGuards } from '@nestjs/common';
@@ -12,7 +10,6 @@ import { Request } from 'express';
 export class SettingsController {
     constructor(
         private readonly userExternalIntegrationService: UserExternalIntegrationService,
-        private readonly googleCalendarService: GoogleCalendarService,
         @Inject(REQUEST)
         private readonly request: Request,
     ) {}
@@ -27,12 +24,14 @@ export class SettingsController {
 
         return {
             externalIntegrations: {
-                hasGoogle: externalIntegrations.some(
-                    (x) => x.type === UserExternalIntegrationType.google,
-                ),
-                hasTrello: externalIntegrations.some(
-                    (x) => x.type === UserExternalIntegrationType.trello,
-                ),
+                hasGoogle:
+                    this.userExternalIntegrationService.hasGoogle(
+                        externalIntegrations,
+                    ),
+                hasTrello:
+                    this.userExternalIntegrationService.hasTrello(
+                        externalIntegrations,
+                    ),
             },
         };
     }

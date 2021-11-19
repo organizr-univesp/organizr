@@ -7,6 +7,18 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserExternalIntegrationService {
+    hasGoogle(externalIntegrations: UserExternalIntegration[]): boolean {
+        return externalIntegrations.some(
+            (x) => x.type === UserExternalIntegrationType.google,
+        );
+    }
+
+    hasTrello(externalIntegrations: UserExternalIntegration[]): boolean {
+        return externalIntegrations.some(
+            (x) => x.type === UserExternalIntegrationType.trello,
+        );
+    }
+
     findByUser(user: User): Promise<UserExternalIntegration[]> {
         return UserExternalIntegration.findAll({
             where: {

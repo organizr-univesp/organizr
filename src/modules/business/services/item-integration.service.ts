@@ -17,4 +17,16 @@ export class ItemIntegrationService {
             include: [Integration],
         });
     }
+
+    create(
+        item: Item,
+        integration: Integration,
+        eventId: string,
+    ): Promise<ItemIntegration> {
+        return ItemIntegration.create({
+            itemId: item.id,
+            integrationId: integration.id,
+            externalId: eventId,
+        });
+    }
 }
