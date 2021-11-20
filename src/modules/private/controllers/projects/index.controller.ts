@@ -1,3 +1,5 @@
+import { ItemIntegrationGoogleCalendarDto } from './models/item-integrations.dto';
+import { ProjectIntegrationsDto } from './models/project-integrations-dto';
 import { ItemIntegration } from '@/modules/business/domain/item-integration.entity';
 import { ProjectIntegrationService } from '@/modules/business/services/project-integration.service';
 import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
@@ -22,6 +24,7 @@ import { Request, Response } from 'express';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { ProjectCreateDto } from '@/modules/private/controllers/projects/models/project-create.dto';
 import { ItemEventDto } from '@/modules/private/controllers/projects/models/item-event.dto';
+import { ItemIntegrationsDto } from '@/modules/private/controllers/projects/models/item-integrations.dto';
 
 @Controller('app/projects')
 @UseGuards(CookieAuthenticationGuard)
@@ -95,7 +98,6 @@ export class ProjectsController {
             this.request.user as User,
             projectSlug,
         );
-
         const item = await this.itemService.findBySlug(
             this.request.user as User,
             itemSlug,
@@ -103,45 +105,29 @@ export class ProjectsController {
 
         const projectIntegrations =
             await this.projectIntegrationService.findByProject(project);
-
         const itemIntegrations = await this.itemIntegrationService.findByItem(
             item,
         );
 
-        const projectGoogleCalendar =
-            this.projectIntegrationService.tryGetGoogleCalendar(
-                projectIntegrations,
-            );
+        const projectIntegrationsDto = new ProjectIntegrationsDto(
+            projectIntegrations,
+        );
+        const itemIntegrationsDto = new ItemIntegrationsDto(itemIntegrations);
 
-        const projectHasGoogleCalendar = projectGoogleCalendar != null;
-        let itemHasGoogleCalendar = false;
-        let itemGoogleCalendar: ItemIntegration | null = null;
-        let event: ItemEventDto | null = null;
-
-        if (projectHasGoogleCalendar) {
-            itemGoogleCalendar =
-                this.itemIntegrationService.tryGetGoogleCalendar(
-                    itemIntegrations,
-                );
-
-            itemHasGoogleCalendar = Boolean(itemGoogleCalendar);
-
-            if (itemHasGoogleCalendar) {
+        if (projectIntegrationsDto.googleCalendarId) {
+            if (itemIntegrationsDto.googleCalendar.enabled) {
                 await this.googleCalendarService.initialize(
                     request.user as User,
                 );
 
-                const googleEvent = await this.googleCalendarService.getEvent(
-                    projectGoogleCalendar.externalId,
-                    itemGoogleCalendar.externalId,
+                const event = await this.googleCalendarService.getEvent(
+                    projectIntegrationsDto.googleCalendarId,
+                    itemIntegrationsDto.googleCalendar.value.eventId,
                 );
 
-                event = {
-                    // Remove the last-character ("Z", in this case) to match the requirements
-                    // for using a datetime-local input.
-                    start: googleEvent.start.dateTime.slice(0, -1),
-                    end: googleEvent.end.dateTime.slice(0, -1),
-                };
+                itemIntegrationsDto.setGoogleCalendar(
+                    new ItemIntegrationGoogleCalendarDto(event),
+                );
             }
         }
 
@@ -149,11 +135,7 @@ export class ProjectsController {
             project,
             item,
             itemIntegrations,
-            googleCalendar: {
-                enabled: itemHasGoogleCalendar,
-                integration: itemGoogleCalendar,
-                data: event,
-            },
+            itemIntegrationsDto,
         };
     }
 }

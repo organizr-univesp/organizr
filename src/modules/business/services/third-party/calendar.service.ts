@@ -87,7 +87,7 @@ export class CalendarService {
 
             // Get Google Calendar integration for this project
             const googleCalendarIntegration =
-                this.projectIntegrationService.tryGetGoogleCalendar(
+                ProjectIntegrationService.tryGetGoogleCalendar(
                     projectIntegrations,
                 );
 
@@ -114,5 +114,40 @@ export class CalendarService {
         ) {
             // TODO: Add when Trello integration is done.
         }
+    }
+
+    async updateEvent(item: Item, start: Date, end: Date): Promise<void> {
+        const user = item.project.user;
+        const project = item.project;
+        const projectIntegrations =
+            await this.projectIntegrationService.findByProject(project);
+        const itemIntegrations = await this.itemIntegrationService.findByItem(
+            item,
+        );
+
+        // Google
+        {
+            const projectGoogleCalendar =
+                ProjectIntegrationService.tryGetGoogleCalendar(
+                    projectIntegrations,
+                );
+            const itemGoogleCalendar =
+                ItemIntegrationService.tryGetGoogleCalendar(itemIntegrations);
+
+            if (projectGoogleCalendar && itemGoogleCalendar) {
+                // Initialize Google integration
+                await this.googleCalendarService.initialize(user);
+
+                // Update event
+                await this.googleCalendarService.updateEvent(
+                    projectGoogleCalendar.externalId,
+                    itemGoogleCalendar.externalId,
+                    start,
+                    end,
+                );
+            }
+        }
+
+        // TODO: Add when Trello integration is done.
     }
 }

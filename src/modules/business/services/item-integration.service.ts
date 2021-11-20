@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ItemIntegrationService {
-    tryGetGoogleCalendar(
+    static tryGetGoogleCalendar(
         itemIntegrations: ItemIntegration[],
     ): ItemIntegration | undefined {
         return itemIntegrations.find(

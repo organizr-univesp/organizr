@@ -4,6 +4,7 @@ export interface DateWithTimeZone {
 }
 
 export interface Event {
+    id: string;
     summary: string;
     start: DateWithTimeZone;
     end: DateWithTimeZone;

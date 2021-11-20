@@ -105,27 +105,28 @@
                     </div>
                 </div>
             </div>
-            {{#if googleCalendar/enabled}}
+            {{#if itemIntegrationsDto/googleCalendar/enabled}}
             <div class="col-12">
                 <hr>
                 <form action="/app/items/{{item/id}}/integrations/google-calendar" method="post"
                     class="row justify-content-start gx-3 mb-0">
-                    <div class="col-12 col-sm-6 col-md-3">
-                        <img src="{{googleCalendar/integration/integration/thumbnailUrl}}"
-                            alt="{{googleCalendar/integration/integration/name}} logo" class="mb-2" height="32" />
-                        <h4 class="fs-4 fw-light">
-                            {{googleCalendar/integration/integration/name}}
-                        </h4>
+                    {{#with itemIntegrationsDto/googleCalendar}}
+                    <div class="col-auto pe-5">
+                        <small class="text-muted">Provided by</small>
+                        <span class="fs-6 d-block">
+                            {{integration/name}}
+                        </span>
                     </div>
+                    <input type="hidden" name="timeZone" value="{{value/start/timeZone}}">
                     <div class="col-12 col-sm-6 col-md-3">
                         <label for="start" class="form-label">Início</label>
                         <input type="datetime-local" class="form-control" id="start" name="start"
-                            value="{{googleCalendar/data/start}}">
+                            value="{{value/start/dateTimeLocal}}">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 offset-sm-6 offset-md-0">
                         <label for="end" class="form-label">Fim</label>
                         <input type="datetime-local" class="form-control" id="end" name="end"
-                            value="{{googleCalendar/data/end}}">
+                            value="{{value/end/dateTimeLocal}}">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 offset-sm-6 offset-md-0">
                         <div class="row gx-3 mt-4 pt-sm-2 justify-content-sm-end justify-content-md-start">
@@ -137,6 +138,7 @@
                             </div>
                         </div>
                     </div>
+                    {{/with}}
                 </form>
             </div>
             {{/if}}

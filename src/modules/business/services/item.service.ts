@@ -30,7 +30,12 @@ export class ItemService {
             where: {
                 id: id,
             },
-            include: [Project],
+            include: [
+                {
+                    model: Project,
+                    include: [User],
+                },
+            ],
         });
 
         if (result == null || result.project.userId != user.id) {

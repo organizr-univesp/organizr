@@ -1,3 +1,5 @@
+import { CalendarService } from '@/modules/business/services/third-party/calendar.service';
+import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
 import { ProjectService } from '@/modules/business/services/project.service';
 import { User } from '@/modules/business/domain/user.entity';
 import { ItemService } from '@/modules/business/services/item.service';
@@ -15,7 +17,10 @@ import {
 import { REQUEST } from '@nestjs/core';
 import { Request, Response } from 'express';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
-import { UpdateGoogleCalendar } from '@/modules/private/controllers/items/models/update-google-calendar';
+import { UpdateEvent } from '@/modules/private/controllers/items/models/update-event';
+import { DateTime } from '@/modules/business/integrations/date-time';
+import { Item } from '@/modules/business/domain/item.entity';
+import { Project } from '@/modules/business/domain/project.entity';
 
 @Controller('app/items')
 @UseGuards(CookieAuthenticationGuard)
@@ -23,9 +28,18 @@ export class ItemsController {
     constructor(
         private readonly projectService: ProjectService,
         private readonly itemService: ItemService,
+        private readonly itemIntegrationService: ItemIntegrationService,
+        private readonly calendarService: CalendarService,
         @Inject(REQUEST)
         private readonly request: Request,
     ) {}
+
+    private getItemRedirectUrl(project: Project, item: Item) {
+        return (
+            this.request.headers.referer ||
+            `/app/projects/s/${project.slug}/${item.slug}`
+        );
+    }
 
     @Post()
     public async create(
@@ -39,11 +53,7 @@ export class ItemsController {
 
         const item = await this.itemService.create(project, itemCreateDto.name);
 
-        const redirectUrl =
-            response.req.headers.referer ||
-            `/app/projects/s/${project.slug}/${item.slug}`;
-
-        response.redirect(redirectUrl);
+        response.redirect(this.getItemRedirectUrl(project, item));
     }
 
     @Post('finish')
@@ -92,9 +102,30 @@ export class ItemsController {
     @Post(':id/integrations/google-calendar')
     public async updateGoogleCalendar(
         @Param('id') id,
-        @Body() updateRequest: UpdateGoogleCalendar,
-    ) {
+        @Body() updateEventRequest: UpdateEvent,
+        @Res() response: Response,
+    ): Promise<void> {
+        const item = await this.itemService.findById(
+            this.request.user as User,
+            id,
+        );
+
+        const startUtc = DateTime.fromZonedToUtc(
+            updateEventRequest.start,
+            updateEventRequest.timeZone,
+        );
+        const endUtc = DateTime.fromZonedToUtc(
+            updateEventRequest.end,
+            updateEventRequest.timeZone,
+        );
+
+        await this.calendarService.updateEvent(
+            item,
+            startUtc.date,
+            endUtc.date,
+        );
+
         // TODO: Create logic to update an item on Google Calendar.
-        return {};
+        return response.redirect(this.getItemRedirectUrl(item.project, item));
     }
 }

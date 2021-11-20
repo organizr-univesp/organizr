@@ -91,7 +91,46 @@ export class GoogleCalendarService {
                 eventId: eventId,
             });
 
-            return result.data as Event;
+            const data = result.data;
+
+            return {
+                id: data.id,
+                summary: data.summary,
+                start: {
+                    dateTime: data.start.dateTime,
+                    timeZone: data.start.timeZone,
+                },
+                end: {
+                    dateTime: data.end.dateTime,
+                    timeZone: data.end.timeZone,
+                },
+            };
+        } catch (e) {
+            this.logger.error(e);
+        }
+    }
+
+    async updateEvent(
+        calendarId: string,
+        eventId: string,
+        start: Date,
+        end: Date,
+    ): Promise<void> {
+        this.ensureInitialized();
+
+        try {
+            await this.calendar.events.patch({
+                calendarId: calendarId,
+                eventId: eventId,
+                requestBody: {
+                    start: {
+                        dateTime: start.toISOString(),
+                    },
+                    end: {
+                        dateTime: end.toISOString(),
+                    },
+                },
+            });
         } catch (e) {
             this.logger.error(e);
         }
