@@ -26,6 +26,28 @@
                 "instanceLimit": 1
             },
             "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "while($true) { lt --subdomain organizr-dev --port 3000; start-sleep -seconds 1; }"
+            ],
+            "group": "none",
+            "label": "localtunnel: organizr-dev",
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "development",
+            "dependsOn": [
+                "npm: start:debug",
+                "sass: build & watch",
+                "localtunnel: organizr-dev"
+            ],
+            "problemMatcher": []
         }
     ]
 }
