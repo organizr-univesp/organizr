@@ -32,7 +32,7 @@ insert into integrations (
     )
 values (
         gen_random_uuid(),
-        'Google Calendar',
+        'Google Calendário',
         '/images/google-calendar.svg',
         '#4285F4',
         'google-calendar',

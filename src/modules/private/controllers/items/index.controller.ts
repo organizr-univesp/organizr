@@ -6,6 +6,7 @@ import {
     Body,
     Controller,
     Inject,
+    Param,
     ParseBoolPipe,
     Post,
     Res,
@@ -14,6 +15,7 @@ import {
 import { REQUEST } from '@nestjs/core';
 import { Request, Response } from 'express';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
+import { UpdateGoogleCalendar } from '@/modules/private/controllers/items/models/update-google-calendar';
 
 @Controller('app/items')
 @UseGuards(CookieAuthenticationGuard)
@@ -85,5 +87,14 @@ export class ItemsController {
         await item.save();
 
         response.redirect(`/app/projects/s/${item.project.slug}`);
+    }
+
+    @Post(':id/integrations/google-calendar')
+    public async updateGoogleCalendar(
+        @Param('id') id,
+        @Body() updateRequest: UpdateGoogleCalendar,
+    ) {
+        // TODO: Create logic to update an item on Google Calendar.
+        return {};
     }
 }

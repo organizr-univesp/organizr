@@ -1,5 +1,6 @@
 import { User } from '@/modules/business/domain/user.entity';
 import { GoogleAuthService } from '@/modules/business/services/third-party/google-auth.service';
+import { Event } from '@/modules/business/services/third-party/models/google-calendar/event';
 import { Inject, Injectable, Logger, Scope } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
@@ -76,6 +77,21 @@ export class GoogleCalendarService {
             });
 
             return result.data.id;
+        } catch (e) {
+            this.logger.error(e);
+        }
+    }
+
+    async getEvent(calendarId: string, eventId: string): Promise<Event> {
+        this.ensureInitialized();
+
+        try {
+            const result = await this.calendar.events.get({
+                calendarId: calendarId,
+                eventId: eventId,
+            });
+
+            return result.data as Event;
         } catch (e) {
             this.logger.error(e);
         }
