@@ -1,5 +1,8 @@
 -- Dropping the tables
 drop table if exists items_integrations;
+drop table if exists user_external_integrations;
+drop table if exists items_integrations;
+drop table if exists projects_integrations;
 drop table if exists integrations;
 drop table if exists integration_categories;
 drop table if exists items;
