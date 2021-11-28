@@ -1,5 +1,5 @@
 import { User } from '@/modules/business/domain/user.entity';
-import { GoogleAuthService } from '@/modules/business/services/third-party/google-auth.service';
+import { GoogleAuthService } from '@/modules/business/services/third-party/google/google-auth.service';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import {
     Controller,

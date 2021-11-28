@@ -1,5 +1,5 @@
 import { User } from '@/modules/business/domain/user.entity';
-import { GoogleAuthService } from '@/modules/business/services/third-party/google-auth.service';
+import { GoogleAuthService } from '@/modules/business/services/third-party/google/google-auth.service';
 import { Event } from '@/modules/business/services/third-party/models/google-calendar/event';
 import { Inject, Injectable, Logger, Scope } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';

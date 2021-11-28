@@ -2,7 +2,7 @@ import { ItemIntegrationGoogleCalendarDto } from './models/item-integrations.dto
 import { ProjectIntegrationsDto } from './models/project-integrations-dto';
 import { ItemIntegration } from '@/modules/business/domain/item-integration.entity';
 import { ProjectIntegrationService } from '@/modules/business/services/project-integration.service';
-import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
+import { GoogleCalendarService } from '@/modules/business/services/third-party/google/google-calendar.service';
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
 import { User } from '@/modules/business/domain/user.entity';
 import { ItemService } from '@/modules/business/services/item.service';

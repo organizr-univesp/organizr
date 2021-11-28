@@ -1,7 +1,7 @@
 import { Integration } from '@/modules/business/domain/integration.entity';
 import { ProjectIntegration } from '@/modules/business/domain/project-integration.entity';
 import { Project } from '@/modules/business/domain/project.entity';
-import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
+import { GoogleCalendarService } from '@/modules/business/services/third-party/google/google-calendar.service';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

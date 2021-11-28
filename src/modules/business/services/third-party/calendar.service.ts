@@ -1,12 +1,12 @@
-import { IntegrationService } from './../integration.service';
-import { ProjectIntegrationService } from './../project-integration.service';
 import { UserExternalIntegrationService } from '@/modules/business/services/user-external-integration.service';
-import { GoogleCalendarService } from '@/modules/business/services/third-party/google-calendar.service';
+import { GoogleCalendarService } from '@/modules/business/services/third-party/google/google-calendar.service';
 import { Project } from '@/modules/business/domain/project.entity';
 import { Injectable } from '@nestjs/common';
 import { Item } from '@/modules/business/domain/item.entity';
 import { addDays, addHours, startOfToday } from 'date-fns';
 import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
+import { ProjectIntegrationService } from '@/modules/business/services/project-integration.service';
+import { IntegrationService } from '@/modules/business/services/integration.service';
 
 @Injectable()
 export class CalendarService {
