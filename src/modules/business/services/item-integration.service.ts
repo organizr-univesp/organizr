@@ -1,3 +1,4 @@
+import { TrelloService } from '@/modules/business/services/third-party/trello/trello.service';
 import { Integration } from '@/modules/business/domain/integration.entity';
 import { ItemIntegration } from '@/modules/business/domain/item-integration.entity';
 import { Item } from '@/modules/business/domain/item.entity';
@@ -6,6 +7,13 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ItemIntegrationService {
+    static tryGetTrello(
+        itemIntegrations: ItemIntegration[],
+    ): ItemIntegration | undefined {
+        return itemIntegrations.find(
+            (x) => x.integration.slug === TrelloService.integrationSlug,
+        );
+    }
     static tryGetGoogleCalendar(
         itemIntegrations: ItemIntegration[],
     ): ItemIntegration | undefined {
@@ -30,12 +38,12 @@ export class ItemIntegrationService {
     create(
         item: Item,
         integration: Integration,
-        eventId: string,
+        externalId: string,
     ): Promise<ItemIntegration> {
         return ItemIntegration.create({
             itemId: item.id,
             integrationId: integration.id,
-            externalId: eventId,
+            externalId: externalId,
         });
     }
 }

@@ -82,13 +82,18 @@
                             <div class="flex-grow-1"></div>
                             <div class="row justify-content-end align-items-center gx-3 mt-3">
                                 <div class="col-auto">
-                                    <code>TODO 🚧</code>
-                                </div>
-                                <div class="col-auto">
-                                    <button class="btn btn-success disabled">
+                                    {{#if externalIntegrations/hasTrello}}
+                                    <span class="text-success">
+                                        <span>Conectado</span>
+                                        <i class="bi bi-check-lg"></i>
+                                    </span>
+                                    {{else}}
+                                    <a class="btn btn-success" href="/integrations/trello">
                                         <span>Conectar</span>
                                         <i class="bi bi-plus-lg"></i>
-                                    </button>
+                                    </a>
+                                    {{/if}}
+
                                 </div>
                             </div>
                         </div>

@@ -50,4 +50,16 @@ export class UserExternalIntegrationService {
             meta: meta,
         });
     }
+
+    async deleteByUserAndType(
+        user: User,
+        type: UserExternalIntegrationType,
+    ): Promise<void> {
+        UserExternalIntegration.destroy({
+            where: {
+                user_id: user.id,
+                type: type,
+            },
+        });
+    }
 }

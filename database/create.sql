@@ -8,7 +8,6 @@ drop table if exists integration_categories;
 drop table if exists items;
 drop table if exists projects;
 drop table if exists users;
-drop table if exists user_external_integrations;
 -- Creating the tables
 create table users (
     id uuid not null primary key,

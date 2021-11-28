@@ -14,6 +14,9 @@ import { SlugService } from '@/modules/business/services/slug.service';
 import { UserService } from '@/modules/business/services/user.service';
 import { Logger, Module } from '@nestjs/common';
 import { CalendarService } from '@/modules/business/services/third-party/calendar.service';
+import { TrelloAuthService } from '@/modules/business/services/third-party/trello/trello-auth.service';
+import { TrelloService } from '@/modules/business/services/third-party/trello/trello.service';
+import { TaskService } from '@/modules/business/services/third-party/task.service';
 
 @Module({
     providers: [
@@ -32,6 +35,9 @@ import { CalendarService } from '@/modules/business/services/third-party/calenda
         GoogleAuthService,
         GoogleCalendarService,
         CalendarService,
+        TrelloAuthService,
+        TrelloService,
+        TaskService,
         Logger,
     ],
     exports: [
@@ -50,6 +56,9 @@ import { CalendarService } from '@/modules/business/services/third-party/calenda
         GoogleAuthService,
         GoogleCalendarService,
         CalendarService,
+        TrelloAuthService,
+        TrelloService,
+        TaskService,
     ],
 })
 export class BusinessModule {}

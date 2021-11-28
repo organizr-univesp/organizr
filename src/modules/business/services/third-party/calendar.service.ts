@@ -61,15 +61,9 @@ export class CalendarService {
                 calendarId,
             );
         }
-
-        if (
-            this.userExternalIntegrationService.hasTrello(externalIntegrations)
-        ) {
-            // TODO: Add when Trello integration is done.
-        }
     }
 
-    async createEvent(item: Item, name: string) {
+    async createEvent(item: Item, name: string): Promise<void> {
         const user = item.project.user;
         const externalIntegrations =
             await this.userExternalIntegrationService.findByUser(user);
@@ -91,11 +85,11 @@ export class CalendarService {
                     projectIntegrations,
                 );
 
-            // Initialize Google integration
-            await this.googleCalendarService.initialize(user);
-
             // If it exists
             if (googleCalendarIntegration) {
+                // Initialize Google integration
+                await this.googleCalendarService.initialize(user);
+
                 // Create the event
                 const eventId = await this.googleCalendarService.createEvent(
                     googleCalendarIntegration.externalId,
@@ -105,14 +99,12 @@ export class CalendarService {
                 );
 
                 // Save the ID of the event to the database
-                this.itemIntegrationService.create(item, integration, eventId);
+                await this.itemIntegrationService.create(
+                    item,
+                    integration,
+                    eventId,
+                );
             }
-        }
-
-        if (
-            this.userExternalIntegrationService.hasTrello(externalIntegrations)
-        ) {
-            // TODO: Add when Trello integration is done.
         }
     }
 
@@ -147,7 +139,5 @@ export class CalendarService {
                 );
             }
         }
-
-        // TODO: Add when Trello integration is done.
     }
 }

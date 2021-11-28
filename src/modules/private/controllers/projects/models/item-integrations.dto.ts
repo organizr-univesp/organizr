@@ -42,19 +42,23 @@ export class ItemIntegrationsDto {
     constructor(itemIntegrations: ItemIntegration[]) {
         const googleCalendarIntegration =
             ItemIntegrationService.tryGetGoogleCalendar(itemIntegrations);
+        const trelloIntegration =
+            ItemIntegrationService.tryGetTrello(itemIntegrations);
 
         this.googleCalendar = {
             enabled: Boolean(googleCalendarIntegration),
             value: {
                 eventId: googleCalendarIntegration?.externalId,
             },
-            integration: googleCalendarIntegration.integration,
+            integration: googleCalendarIntegration?.integration,
         };
 
         this.trello = {
-            enabled: false,
-            value: undefined,
-            integration: undefined,
+            enabled: Boolean(trelloIntegration),
+            value: {
+                cardId: trelloIntegration?.externalId,
+            },
+            integration: trelloIntegration?.integration,
         };
     }
 

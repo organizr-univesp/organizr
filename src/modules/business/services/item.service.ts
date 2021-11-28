@@ -1,3 +1,5 @@
+import { ItemIntegrationService } from '@/modules/business/services/item-integration.service';
+import { TaskService } from '@/modules/business/services/third-party/task.service';
 import { Item } from '@/modules/business/domain/item.entity';
 import { Project } from '@/modules/business/domain/project.entity';
 import { User } from '@/modules/business/domain/user.entity';
@@ -11,6 +13,8 @@ export class ItemService {
     constructor(
         private readonly slugService: SlugService,
         private readonly calendarService: CalendarService,
+        private readonly taskService: TaskService,
+        private readonly itemIntegrationService: ItemIntegrationService,
     ) {}
 
     async findAll(): Promise<Item[]> {
@@ -45,10 +49,15 @@ export class ItemService {
         return result;
     }
 
-    async findBySlug(user: User, slug: string): Promise<Item | null> {
+    async findBySlug(
+        user: User,
+        projectId: string,
+        slug: string,
+    ): Promise<Item | null> {
         const result = await Item.findOne({
             where: {
                 slug: slug,
+                projectId: projectId,
             },
             include: [Project],
         });
@@ -80,8 +89,21 @@ export class ItemService {
             ],
         });
 
-        this.calendarService.createEvent(item, name);
+        await this.calendarService.createEvent(item, name);
+        await this.taskService.createTask(item, name);
 
         return item;
+    }
+
+    async updateStatus(item: Item, finished: boolean): Promise<void> {
+        if (finished) {
+            item.finishedAt = new Date();
+        } else {
+            item.finishedAt = null;
+        }
+
+        await this.taskService.updateStatus(item, finished);
+
+        await item.save();
     }
 }
