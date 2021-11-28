@@ -67,13 +67,7 @@ export class ItemsController {
             id,
         );
 
-        if (finished) {
-            item.finishedAt = new Date();
-        } else {
-            item.finishedAt = null;
-        }
-
-        await item.save();
+        await this.itemService.updateStatus(item, finished);
 
         const redirectUrl =
             response.req.headers.referer ||

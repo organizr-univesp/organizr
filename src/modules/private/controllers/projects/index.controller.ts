@@ -23,7 +23,6 @@ import { REQUEST } from '@nestjs/core';
 import { Request, Response } from 'express';
 import { CookieAuthenticationGuard } from '@/modules/private/guards/cookie-authentication.guard';
 import { ProjectCreateDto } from '@/modules/private/controllers/projects/models/project-create.dto';
-import { ItemEventDto } from '@/modules/private/controllers/projects/models/item-event.dto';
 import { ItemIntegrationsDto } from '@/modules/private/controllers/projects/models/item-integrations.dto';
 
 @Controller('app/projects')
@@ -100,6 +99,7 @@ export class ProjectsController {
         );
         const item = await this.itemService.findBySlug(
             this.request.user as User,
+            project.id,
             itemSlug,
         );
 

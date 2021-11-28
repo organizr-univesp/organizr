@@ -11,7 +11,11 @@ export class ProjectIntegrationsDto {
             this.setGoogleCalendarId(googleCalendarIntegration.externalId);
         }
 
-        // TODO: Add Trello integration
+        const trelloIntegration =
+            ProjectIntegrationService.tryGetTrello(projectIntegrations);
+        if (trelloIntegration) {
+            this.setTrelloId(trelloIntegration.externalId);
+        }
     }
 
     setGoogleCalendarId(calendarId?: string): void {

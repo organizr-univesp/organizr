@@ -142,10 +142,23 @@
                 </form>
             </div>
             {{/if}}
+            {{#if itemIntegrationsDto/trello/enabled}}
             <div class="col-12">
                 <hr>
-                <code>TODO 🚧</code>
+                {{#with itemIntegrationsDto/trello}}
+                <div class="col-auto pe-5 mb-2">
+                    <small class="text-muted">Fornecido por</small>
+                    <span class="fs-6 d-block">
+                        {{integration/name}}
+                    </span>
+                </div>
+                <blockquote class="trello-card">
+                    <a href="https://trello.com/c/{{value/cardId}}">View Trello Card</a>
+                </blockquote>
+                <script src="https://p.trellocdn.com/embed.min.js"></script>
+                {{/with}}
             </div>
+            {{/if}}
         </div>
     </div>
 

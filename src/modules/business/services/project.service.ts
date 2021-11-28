@@ -1,3 +1,4 @@
+import { TaskService } from './third-party/task.service';
 import { v4 } from 'uuid';
 import { Project } from '@/modules/business/domain/project.entity';
 import { User } from '@/modules/business/domain/user.entity';
@@ -10,6 +11,7 @@ export class ProjectService {
     constructor(
         private readonly slugService: SlugService,
         private readonly calendarService: CalendarService,
+        private readonly taskService: TaskService,
     ) {}
 
     private ensureFound(project: Project) {
@@ -74,6 +76,7 @@ export class ProjectService {
         });
 
         await this.calendarService.createCalendar(project, name, color);
+        await this.taskService.createBoard(project, name, color);
 
         return project;
     }

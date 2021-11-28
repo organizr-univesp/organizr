@@ -1,3 +1,4 @@
+import { TrelloService } from '@/modules/business/services/third-party/trello/trello.service';
 import { Integration } from '@/modules/business/domain/integration.entity';
 import { ProjectIntegration } from '@/modules/business/domain/project-integration.entity';
 import { Project } from '@/modules/business/domain/project.entity';
@@ -11,6 +12,14 @@ export class ProjectIntegrationService {
     ): ProjectIntegration | null {
         return projectIntegrations.find(
             (x) => x.integration.slug === GoogleCalendarService.integrationSlug,
+        );
+    }
+
+    static tryGetTrello(
+        projectIntegrations: ProjectIntegration[],
+    ): ProjectIntegration | null {
+        return projectIntegrations.find(
+            (x) => x.integration.slug === TrelloService.integrationSlug,
         );
     }
 
