@@ -75,6 +75,9 @@ export class ProjectsController {
             slug,
         );
 
+        const projectIntegrations =
+            await this.projectIntegrationService.findByProject(project);
+
         const items = await this.itemService.findByProject(project);
         const pendingItems = items.filter((x) => x.finishedAt == null);
         const finishedItems = items.filter((x) => !pendingItems.includes(x));
@@ -83,6 +86,7 @@ export class ProjectsController {
             project,
             pendingItems,
             finishedItems,
+            projectIntegrations,
         };
     }
 
